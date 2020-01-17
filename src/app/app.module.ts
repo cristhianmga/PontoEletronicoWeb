@@ -11,6 +11,7 @@ import { PadraoService } from './service/padrao-service';
 import { bObservableUsuario } from './util/observable-util';
 import { HttpClientModule } from '@angular/common/http';
 import { NgxMaskModule, IConfig } from 'ngx-mask';
+import { EmpresaComponent } from './empresa/empresa.component';
 
 export let options: Partial<IConfig> | (() => Partial<IConfig>);
 
@@ -18,7 +19,8 @@ export let options: Partial<IConfig> | (() => Partial<IConfig>);
   declarations: [
     AppComponent,
     PaginaInicialComponent,
-    LoginComponent
+    LoginComponent,
+    EmpresaComponent
   ],
   imports: [
     BrowserModule,
