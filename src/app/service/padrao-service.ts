@@ -33,7 +33,7 @@ export class PadraoService {
   )
 
   ObterToken(obj: any): Observable<any> {
-    return this.http.post<any>(`${environment.apiEndpoint}/api/login`, obj,{headers:headers()});
+    return this.http.post<any>(`${environment.apiEndpoint}/api/Autenticacao`, obj,{headers:headers()});
   }
 
 

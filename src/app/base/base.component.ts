@@ -4,7 +4,6 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { FormGroup, FormArray } from '@angular/forms';
 import { bObservableUsuario } from '../util/observable-util';
 import { JwtHelperService } from '@auth0/angular-jwt';
-import {Md5} from 'ts-md5/dist/md5';
 
 @Component({template:''})
 export class BaseComponent implements OnInit {
@@ -34,7 +33,9 @@ export class BaseComponent implements OnInit {
 		});
 	}
 
-	hashMd5(msg:string){
-		return Md5.hashStr(msg);
-	}
+	public limpaCaracterEspecial(campo: string): string {
+        if (campo != null)
+            return campo.replace(/[^0-9A-Za-z]/g, '');
+        else return '';
+    }
 }
