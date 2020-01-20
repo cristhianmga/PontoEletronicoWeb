@@ -1,25 +1,21 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark" style="height: 10%;">
-	<a class="navbar-brand" href="#">Ponto Eletrônico</a>
-	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Alterna navegação">
-		<span class="navbar-toggler-icon"></span>
-	</button>
-	<div class="collapse navbar-collapse" id="navbarNav">
-		<ul class="navbar-nav">
-			<li class="nav-item active">
-				<a class="nav-link" href="#">Home <span class="sr-only">(Página atual)</span></a>
-			</li>
-			<li class="nav-item">
-				<a class="nav-link" href="#">Destaques</a>
-			</li>
-			<li class="nav-item">
-				<a class="nav-link" href="#">Preços</a>
-			</li>
-			<li class="nav-item">
-				<a class="nav-link disabled" href="#">Desativado</a>
-			</li>
-		</ul>
-	</div>
-</nav>
-<div class="container-fluid" style="height: 90%;">
-  	<router-outlet></router-outlet>
-</div>
+
+<mat-sidenav-container class="example-container">
+	<mat-sidenav #sidenav mode="over" [(opened)]="opened">
+		Sidenav content
+	</mat-sidenav>
+
+	<mat-sidenav-content>
+		<mat-toolbar style="height: 10%;" color="primary">
+			<mat-toolbar-row>
+				<span>Ponto Eletrônico</span>
+				<mat-icon style="margin-left: 14px;" (click)="sidenav.toggle()" aria-hidden="false" aria-label="Example heart icon">menu</mat-icon>
+				<span class="example-fill-remaining-space"></span>
+				<mat-icon style="margin-right: 14px;" aria-hidden="false" aria-label="Example heart icon">favorite</mat-icon>
+				<mat-icon style="margin-right: 14px;" aria-hidden="false" aria-label="Example delete icon">delete</mat-icon>
+			</mat-toolbar-row>
+		</mat-toolbar>
+		<div style="height: 90%;" class="imagem-fundo">
+			<router-outlet></router-outlet>
+		</div>
+	</mat-sidenav-content>
+</mat-sidenav-container>

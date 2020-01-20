@@ -12,6 +12,17 @@ import { bObservableUsuario } from './util/observable-util';
 import { HttpClientModule } from '@angular/common/http';
 import { NgxMaskModule, IConfig } from 'ngx-mask';
 import { EmpresaComponent } from './empresa/empresa.component';
+import {MatSidenavModule} from '@angular/material/sidenav';
+import {MatCheckboxModule} from '@angular/material/checkbox';
+import {ScrollingModule} from '@angular/cdk/scrolling';
+import {MatToolbarModule} from '@angular/material/toolbar';
+import {MatIconModule} from '@angular/material/icon';
+import {MatButtonModule} from '@angular/material/button';
+import {MatCardModule} from '@angular/material/card';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatInputModule} from '@angular/material/input';
+import {MatGridListModule} from '@angular/material/grid-list';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 export let options: Partial<IConfig> | (() => Partial<IConfig>);
 
@@ -29,7 +40,18 @@ export let options: Partial<IConfig> | (() => Partial<IConfig>);
     BrowserAnimationsModule,
     HttpClientModule ,
     FormsModule,
-    NgxMaskModule.forRoot(options)
+    NgxMaskModule.forRoot(options),
+    MatSidenavModule,
+    MatCheckboxModule,
+    ScrollingModule,
+    MatToolbarModule,
+    MatIconModule,
+    MatButtonModule,
+    MatCardModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatGridListModule,
+    FlexLayoutModule
   ],
   providers: [AuthGuard,PadraoService,bObservableUsuario,
     {provide: LOCALE_ID, useValue: 'pt' }],
