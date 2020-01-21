@@ -4,7 +4,8 @@ import { FormBuilder } from '@angular/forms';
 
 @Component({
     selector: 'pagina-inicial',
-    templateUrl: './PaginaInicial.component.html'
+    templateUrl: './PaginaInicial.component.html',
+    styleUrls:['./PaginaInicial.component.css']
   })
   export class PaginaInicialComponent extends BaseComponent {
   

@@ -5,13 +5,21 @@
 	</mat-sidenav>
 
 	<mat-sidenav-content>
-		<mat-toolbar style="height: 10%;" color="primary">
+		<mat-toolbar color="primary" *ngIf="isLogged()">
 			<mat-toolbar-row>
 				<span>Ponto Eletrônico</span>
-				<mat-icon style="margin-left: 14px;" (click)="sidenav.toggle()" aria-hidden="false" aria-label="Example heart icon">menu</mat-icon>
+				<mat-icon style="margin-left: 14px;" (click)="sidenav.toggle()">menu</mat-icon>
 				<span class="example-fill-remaining-space"></span>
-				<mat-icon style="margin-right: 14px;" aria-hidden="false" aria-label="Example heart icon">favorite</mat-icon>
-				<mat-icon style="margin-right: 14px;" aria-hidden="false" aria-label="Example delete icon">delete</mat-icon>
+				<button mat-button [matMenuTriggerFor]="menu">
+					<mat-icon style="margin-right: 14px; font-size: 30px;">person_pin</mat-icon>
+					<mat-icon>expand_more</mat-icon>
+				</button>
+				<mat-menu #menu="matMenu" xPosition="before">
+					<button mat-menu-item (click)="logout()">
+						<mat-icon>exit_to_app</mat-icon>
+						<span>LOGOUT</span>
+					</button>
+				</mat-menu>
 			</mat-toolbar-row>
 		</mat-toolbar>
 		<div style="height: 90%;" class="imagem-fundo">

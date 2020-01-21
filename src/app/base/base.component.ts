@@ -11,11 +11,19 @@ export class BaseComponent implements OnInit {
   	constructor(public service:PadraoService,public router:Router,public activatedRoute:ActivatedRoute,public obsUsuario:bObservableUsuario) { }
 	verificarToken() {
 		const helper = new JwtHelperService();
+		var tempo;
 		if (localStorage.getItem("token") != null) {
-			if (helper.isTokenExpired(localStorage.getItem("token"))) {
-			localStorage.removeItem('token');
-			this.router.navigate(['/login'])
-			} 
+			try{
+				tempo = helper.isTokenExpired(localStorage.getItem("token"));
+				if (tempo) {
+					localStorage.removeItem('token');
+					this.router.navigate(['/login'])
+				} 
+			}
+			catch(e){
+				localStorage.removeItem('token');
+				this.router.navigate(['/login'])
+			}
 		}
 	}
 	ngOnInit() {

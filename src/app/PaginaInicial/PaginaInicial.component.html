@@ -1,1 +1,37 @@
-<p>Pagina Inicial</p>
+<div class="login-wrapper" fxLayout="row" fxLayoutAlign="center center">
+
+    <div fxLayout="column"  fxFlex="100%" fxLayoutAlign="center center">
+        <mat-card class="box" style="height:200px" >
+            <mat-card-header>
+                <a (click)="MinhaEmpresa()" style="cursor: pointer;">
+                    <mat-card-title>Minha Empresa</mat-card-title>
+                </a>
+            </mat-card-header>
+            <mat-card-content >
+                <a (click)="MinhaEmpresa()" style="cursor: pointer;">
+                    <div style="text-align: center; padding-right: 40px;padding-top: 30px;">
+                        <mat-icon style="font-size: 60pt;">business</mat-icon>
+                    </div>
+                </a>
+            </mat-card-content>
+        </mat-card>
+    </div>
+
+    
+    <div fxLayout="column"   fxFlex="100%" fxLayoutAlign="center center">
+        <mat-card class="box" style="height:200px" >
+            <mat-card-header>
+                <a (click)="MeuPerfil()" style="cursor: pointer;">
+                    <mat-card-title>Meu Perfil</mat-card-title>
+                </a>
+            </mat-card-header>
+            <mat-card-content >
+                <a (click)="MeuPerfil()" style="cursor: pointer;">
+                    <div style="text-align: center; padding-right: 40px;padding-top: 30px;">
+                        <mat-icon style="font-size: 60pt;">person</mat-icon>
+                    </div>
+                </a>
+            </mat-card-content>
+        </mat-card>
+    </div>
+</div> 

@@ -23,6 +23,7 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
 import {MatGridListModule} from '@angular/material/grid-list';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import {MatMenuModule} from '@angular/material/menu';
 
 export let options: Partial<IConfig> | (() => Partial<IConfig>);
 
@@ -51,7 +52,8 @@ export let options: Partial<IConfig> | (() => Partial<IConfig>);
     MatFormFieldModule,
     MatInputModule,
     MatGridListModule,
-    FlexLayoutModule
+    FlexLayoutModule,
+    MatMenuModule
   ],
   providers: [AuthGuard,PadraoService,bObservableUsuario,
     {provide: LOCALE_ID, useValue: 'pt' }],
