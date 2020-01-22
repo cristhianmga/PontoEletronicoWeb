@@ -24,6 +24,9 @@ export class BaseComponent implements OnInit {
 				localStorage.removeItem('token');
 				this.router.navigate(['/login'])
 			}
+		}else{
+			localStorage.removeItem('token');
+			this.router.navigate(['/login'])
 		}
 	}
 	ngOnInit() {
