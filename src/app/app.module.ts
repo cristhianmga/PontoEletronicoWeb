@@ -25,6 +25,8 @@ import {MatGridListModule} from '@angular/material/grid-list';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import {MatMenuModule} from '@angular/material/menu';
 import {MatTableModule} from '@angular/material/table';
+import {MatPaginatorModule} from '@angular/material/paginator';
+import { InputCpfCnpjComponent } from './base/Component/input-cpf-cnpj/input-cpf-cnpj.component';
 
 export let options: Partial<IConfig> | (() => Partial<IConfig>);
 
@@ -33,7 +35,8 @@ export let options: Partial<IConfig> | (() => Partial<IConfig>);
     AppComponent,
     PaginaInicialComponent,
     LoginComponent,
-    EmpresaComponent
+    EmpresaComponent,
+    InputCpfCnpjComponent
   ],
   imports: [
     BrowserModule,
@@ -55,7 +58,8 @@ export let options: Partial<IConfig> | (() => Partial<IConfig>);
     MatGridListModule,
     FlexLayoutModule,
     MatMenuModule,
-    MatTableModule
+    MatTableModule,
+    MatPaginatorModule
   ],
   providers: [AuthGuard,PadraoService,bObservableUsuario,
     {provide: LOCALE_ID, useValue: 'pt' }],

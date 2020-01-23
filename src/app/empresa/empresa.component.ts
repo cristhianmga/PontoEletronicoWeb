@@ -1,5 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { BaseComponent } from '../base/base.component';
+import { MatPaginator } from '@angular/material/paginator';
+import { Empresa } from '../Entity/Empresa.model';
+import { MatTableDataSource } from '@angular/material/table';
 
 @Component({
   selector: 'app-empresa',
@@ -8,7 +11,13 @@ import { BaseComponent } from '../base/base.component';
 })
 export class EmpresaComponent extends BaseComponent {
 
+  displayedColumns: string[] = ['Id','CNPJ','RazaoSocial'];
+
+  @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
+  dataSource = new MatTableDataSource<Empresa>([]);;
+
   ngOnInit() {
+    this.dataSource.paginator = this.paginator;
   }
 
 }
