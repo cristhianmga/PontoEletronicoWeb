@@ -1,23 +1,25 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
 import { BaseComponent } from '../base/base.component';
 import { MatPaginator } from '@angular/material/paginator';
 import { Empresa } from '../Entity/Empresa.model';
 import { MatTableDataSource } from '@angular/material/table';
+import { PaginationDataTable } from '../base/pagination-data-table.component';
 
 @Component({
   selector: 'app-empresa',
   templateUrl: './empresa.component.html',
   styleUrls: ['./empresa.component.css']
 })
-export class EmpresaComponent extends BaseComponent {
-
+export class EmpresaComponent extends PaginationDataTable implements AfterViewInit{
+  urlController = 'Empresa';
   displayedColumns: string[] = ['Id','CNPJ','RazaoSocial'];
-
-  @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
-  dataSource = new MatTableDataSource<Empresa>([]);;
+  @ViewChild(PaginationDataTable,{static:false}) pagination;
 
   ngOnInit() {
-    this.dataSource.paginator = this.paginator;
+      
+  }
+  ngAfterViewInit(){
+    this.dataSource = this.pagination.dataSource;
   }
 
 }

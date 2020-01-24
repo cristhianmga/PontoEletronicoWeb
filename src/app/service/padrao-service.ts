@@ -3,6 +3,7 @@ import { HttpClient, HttpResponse, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from '../../environments/environment';
 import { cacheable, clearCache, headers } from '../util/rxjs-functions';
+import { Paginacao } from '../Entity/Paginacao.model';
 
 @Injectable()
 export class PadraoService {
@@ -28,6 +29,12 @@ export class PadraoService {
   
   ObterTodos = (route: string, cacheKey?: string, refresh: boolean = false) => cacheable(
     () => this.http.get<any[]>(`${environment.apiEndpoint}/api/${route}`,{headers:headers()}),
+    cacheKey,
+    refresh
+  )
+
+  ObterTodosPaginado = (route: string,pagination:Paginacao, cacheKey?: string, refresh: boolean = false) => cacheable(
+    () => this.http.get<any>(`${environment.apiEndpoint}/api/${route}/ObterTodosPaginado`,{headers:headers(pagination)}),
     cacheKey,
     refresh
   )

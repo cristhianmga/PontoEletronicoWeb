@@ -1,6 +1,7 @@
 import { Observable, ReplaySubject } from 'rxjs';
 import { headersToString } from 'selenium-webdriver/http';
 import { HttpHeaders } from '@angular/common/http';
+import { Paginacao } from '../Entity/Paginacao.model';
 
 let cacheableCache: { [key: string]: Observable<any> } = {};
 export function cacheable<T>(returnObservable: () => Observable<T>, key?: string, refresh?: boolean, customCache?: { [key: string]: Observable<T> }): Observable<T> {
@@ -37,7 +38,8 @@ let defaultHeaders = new Headers({
   'Access-Control-Allow-Headers': 'Content-Type'
 });
 
-export function headers(){
+export function headers(filtro:any = null){
+  let params: URLSearchParams = new URLSearchParams();
   let headers: HttpHeaders = new HttpHeaders();
   headers = headers.append('Content-Type', 'application/json');
   headers = headers.append('Access-Control-Allow-Origin', '*');
@@ -46,6 +48,9 @@ export function headers(){
   headers = headers.append('Access-Control-Allow-Headers', 'Content-Type');
   if(localStorage.getItem('token') != null){
     headers = headers.append('Authorization',`Bearer ${localStorage.getItem('token')}`);
+  }
+  if(filtro != null){
+    Object.keys(filtro).map(k => params.set(k, filtro[k]));
   }
   return headers;
 }

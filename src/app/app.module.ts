@@ -27,6 +27,8 @@ import {MatMenuModule} from '@angular/material/menu';
 import {MatTableModule} from '@angular/material/table';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import { InputCpfCnpjComponent } from './base/Component/input-cpf-cnpj/input-cpf-cnpj.component';
+import { PipeCpfCnpj } from './util/pipe-cpf-cnpj';
+import { PaginationDataTable } from './base/pagination-data-table.component';
 
 export let options: Partial<IConfig> | (() => Partial<IConfig>);
 
@@ -36,7 +38,9 @@ export let options: Partial<IConfig> | (() => Partial<IConfig>);
     PaginaInicialComponent,
     LoginComponent,
     EmpresaComponent,
-    InputCpfCnpjComponent
+    InputCpfCnpjComponent,
+    PipeCpfCnpj,
+    PaginationDataTable
   ],
   imports: [
     BrowserModule,
@@ -62,6 +66,7 @@ export let options: Partial<IConfig> | (() => Partial<IConfig>);
     MatPaginatorModule
   ],
   providers: [AuthGuard,PadraoService,bObservableUsuario,
+    PipeCpfCnpj,
     {provide: LOCALE_ID, useValue: 'pt' }],
   bootstrap: [AppComponent]
 })
