@@ -1,28 +1,29 @@
 
+<mat-toolbar class="mat-elevation-z6" color="primary" style="position: fixed;" *ngIf="isLogged()">
+	<mat-toolbar-row>
+		<span>Ponto Eletrônico</span>
+		<mat-icon style="margin-left: 14px;" (click)="sidenav.toggle()">menu</mat-icon>
+		<span class="example-fill-remaining-space"></span>
+		<button mat-button [matMenuTriggerFor]="menu">
+			<mat-icon style="margin-right: 14px; font-size: 30px;">person_pin</mat-icon>
+			<mat-icon>expand_more</mat-icon>
+		</button>
+		<mat-menu #menu="matMenu" xPosition="before">
+			<button mat-menu-item (click)="logout()">
+				<mat-icon>exit_to_app</mat-icon>
+				<span>LOGOUT</span>
+			</button>
+		</mat-menu>
+	</mat-toolbar-row>
+</mat-toolbar>
 <mat-sidenav-container class="example-container">
-	<mat-sidenav #sidenav mode="over" [(opened)]="opened">
-		Sidenav content
+	<mat-sidenav #sidenav mode="over" [(opened)]="opened" style="width: 15%;">
+		<button mat-menu-item routerLink=""><mat-icon>home</mat-icon> Pagina Inicial</button>
+		<button mat-menu-item routerLink="/empresa"><mat-icon>business</mat-icon> Empresa</button>
 	</mat-sidenav>
 
 	<mat-sidenav-content>
-		<mat-toolbar color="primary" *ngIf="isLogged()">
-			<mat-toolbar-row>
-				<span>Ponto Eletrônico</span>
-				<mat-icon style="margin-left: 14px;" (click)="sidenav.toggle()">menu</mat-icon>
-				<span class="example-fill-remaining-space"></span>
-				<button mat-button [matMenuTriggerFor]="menu">
-					<mat-icon style="margin-right: 14px; font-size: 30px;">person_pin</mat-icon>
-					<mat-icon>expand_more</mat-icon>
-				</button>
-				<mat-menu #menu="matMenu" xPosition="before">
-					<button mat-menu-item (click)="logout()">
-						<mat-icon>exit_to_app</mat-icon>
-						<span>LOGOUT</span>
-					</button>
-				</mat-menu>
-			</mat-toolbar-row>
-		</mat-toolbar>
-		<div style="height: 90%;" class="imagem-fundo">
+		<div style="height: 100%;" class="imagem-fundo">
 			<router-outlet></router-outlet>
 		</div>
 	</mat-sidenav-content>

@@ -10,16 +10,13 @@ import { PaginationDataTable } from '../base/pagination-data-table.component';
   templateUrl: './empresa.component.html',
   styleUrls: ['./empresa.component.css']
 })
-export class EmpresaComponent extends PaginationDataTable implements AfterViewInit{
+export class EmpresaComponent{
   urlController = 'Empresa';
   displayedColumns: string[] = ['Id','CNPJ','RazaoSocial'];
-  @ViewChild(PaginationDataTable,{static:false}) pagination;
+  dataSource:MatTableDataSource<any> = new MatTableDataSource<any>();
 
   ngOnInit() {
       
-  }
-  ngAfterViewInit(){
-    this.dataSource = this.pagination.dataSource;
   }
 
 }

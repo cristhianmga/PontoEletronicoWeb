@@ -1,30 +1,26 @@
-<div class="tela-cadastro">
+<div class="tela-cadastro" fxLayout="column">
+	<div  fxLayout="row">
+		<mat-toolbar style="background-color: #111E6C;"><h1 style="color: white;">Empresa</h1></mat-toolbar>
+	</div>
     <div  fxLayout="row" fxLayoutAlign="center start" fxFlex="100%">
         <div class="mat-elevation-z1" fxLayout="Column" fxFlex="100%">
             <table mat-table [dataSource]="dataSource">
-          
-              <!-- Position Column -->
               <ng-container matColumnDef="Id">
                 <th mat-header-cell *matHeaderCellDef> Id </th>
-                <td mat-cell *matCellDef="let element"> {{element.Id}} </td>
+                <td mat-cell *matCellDef="let element"> {{element.id}} </td>
               </ng-container>
-          
-              <!-- Name Column -->
               <ng-container matColumnDef="RazaoSocial">
                 <th mat-header-cell *matHeaderCellDef> Razão Social </th>
-                <td mat-cell *matCellDef="let element"> {{element.RazaoSocial}} </td>
+                <td mat-cell *matCellDef="let element"> {{element.razaoSocial}} </td>
               </ng-container>
-          
-              <!-- Weight Column -->
               <ng-container matColumnDef="CNPJ">
                 <th mat-header-cell *matHeaderCellDef> CNPJ </th>
-                <td mat-cell *matCellDef="let element"> {{element.CNPJ | cpfCnpj}} </td>
+                <td mat-cell *matCellDef="let element"> {{element.cnpj | cpfCnpj}} </td>
               </ng-container>
-          
               <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
               <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
             </table>
-            <pagination-data-table [url]="urlController"></pagination-data-table>
-          </div>
+            <pagination-data-table [url]="urlController" [(dataSource)]="dataSource"></pagination-data-table>
+		</div>
     </div>
-</div>>
+</div>
