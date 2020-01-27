@@ -23,20 +23,21 @@ export class PaginationDataTable extends BaseComponent{
     }
 
     primeiraConexao(){
+        this.ObsBlockPanel.setBlockedPanel(true);
         this.service.ObterTodosPaginado(this.url,new Paginacao(this.paginator.pageIndex,this.paginator.pageSize,"","")).subscribe(x => {
             this.dataSource = new MatTableDataSource(x.content);
             this.maxitens = x.totalElements;
-            
             this.dataSourceChange.emit(this.dataSource);
-        });
+        },error => console.log(error),() => this.ObsBlockPanel.setBlockedPanel(false));
     }
 
     trocaPage(event){
+        this.ObsBlockPanel.setBlockedPanel(true);
         this.service.ObterTodosPaginado(this.url,new Paginacao(event.pageIndex,event.pageSize,"","")).subscribe(x => {
             this.dataSource = new MatTableDataSource(x.content);
             this.maxitens = x.totalElements;
             
             this.dataSourceChange.emit(this.dataSource);
-        });
+        },error => console.log(error),() => this.ObsBlockPanel.setBlockedPanel(false));
     }
 }

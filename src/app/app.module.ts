@@ -8,7 +8,7 @@ import { PaginaInicialComponent } from './PaginaInicial/PaginaInicial.component'
 import { LoginComponent } from './Login/Login.component';
 import { AuthGuard } from './autenticacao/auth-guard';
 import { PadraoService } from './service/padrao-service';
-import { bObservableUsuario } from './util/observable-util';
+import { bObservableUsuario,ObservableBlockPanel } from './util/observable-util';
 import { HttpClientModule } from '@angular/common/http';
 import { NgxMaskModule, IConfig } from 'ngx-mask';
 import { EmpresaComponent } from './empresa/empresa.component';
@@ -29,6 +29,9 @@ import {MatPaginatorModule} from '@angular/material/paginator';
 import { InputCpfCnpjComponent } from './base/Component/input-cpf-cnpj/input-cpf-cnpj.component';
 import { PipeCpfCnpj } from './util/pipe-cpf-cnpj';
 import { PaginationDataTable } from './base/pagination-data-table.component';
+import {MatProgressSpinnerModule, MatSpinner} from '@angular/material/progress-spinner';
+import { OverlayModule } from '@angular/cdk/overlay'
+import { SpinnerComponent } from './base/spinner.component';
 
 export let options: Partial<IConfig> | (() => Partial<IConfig>);
 
@@ -63,11 +66,14 @@ export let options: Partial<IConfig> | (() => Partial<IConfig>);
     FlexLayoutModule,
     MatMenuModule,
     MatTableModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    MatProgressSpinnerModule,
+    OverlayModule,
   ],
-  providers: [AuthGuard,PadraoService,bObservableUsuario,
+  providers: [AuthGuard,PadraoService,bObservableUsuario,ObservableBlockPanel,SpinnerComponent, MatSpinner,
     PipeCpfCnpj,
     {provide: LOCALE_ID, useValue: 'pt' }],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [ MatSpinner ],
 })
 export class AppModule { }

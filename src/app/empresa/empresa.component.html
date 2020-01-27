@@ -2,6 +2,9 @@
 	<div  fxLayout="row">
 		<mat-toolbar style="background-color: #111E6C;"><h1 style="color: white;">Empresa</h1></mat-toolbar>
 	</div>
+	<div  fxLayout="row" fxFlex="15%" fxLayoutAlign="end center" style="padding-right: 60px;">
+		<button mat-raised-button style="height: min-content; width: 200px;" color="primary"><mat-icon>add</mat-icon> Adicionar</button>
+	</div>
     <div  fxLayout="row" fxLayoutAlign="center start" fxFlex="100%">
         <div class="mat-elevation-z1" fxLayout="Column" fxFlex="100%">
             <table mat-table [dataSource]="dataSource">

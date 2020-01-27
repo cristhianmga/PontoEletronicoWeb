@@ -2,13 +2,14 @@ import { Component, OnInit } from '@angular/core';
 import { PadraoService } from '../service/padrao-service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormGroup, FormArray } from '@angular/forms';
-import { bObservableUsuario } from '../util/observable-util';
+import { bObservableUsuario, ObservableBlockPanel } from '../util/observable-util';
 import { JwtHelperService } from '@auth0/angular-jwt';
+import { SpinnerComponent } from './spinner.component';
 
 @Component({template:''})
 export class BaseComponent implements OnInit {
 
-  	constructor(public service:PadraoService,public router:Router,public activatedRoute:ActivatedRoute,public obsUsuario:bObservableUsuario) { }
+  	constructor(public service:PadraoService,public router:Router,public activatedRoute:ActivatedRoute,public obsUsuario:bObservableUsuario,public ObsBlockPanel:ObservableBlockPanel,private spinner: SpinnerComponent) { }
 	verificarToken() {
 		const helper = new JwtHelperService();
 		var tempo;

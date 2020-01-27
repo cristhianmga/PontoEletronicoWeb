@@ -30,16 +30,16 @@ export class ObservableVariable implements ObservableUtil {
  */
 @Injectable()
 export class ObservableBlockPanel implements ObservableUtil {
-    subject = new Subject<any>();
-    setBlockedPanel(variable: any) {
-        this.subject.next({ text: variable });
+    subject = new Subject<boolean>();
+    setBlockedPanel(variable: boolean) {
+        this.subject.next(variable);
     }
 
     clearBlockedPanel() {
         this.subject.next();
     }
 
-    getBlockedPanel(): Observable<any> {
+    getBlockedPanel(): Observable<boolean> {
         return this.subject.asObservable();
     }
 }
