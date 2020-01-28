@@ -32,6 +32,9 @@ import { PaginationDataTable } from './base/pagination-data-table.component';
 import {MatProgressSpinnerModule, MatSpinner} from '@angular/material/progress-spinner';
 import { OverlayModule } from '@angular/cdk/overlay'
 import { SpinnerComponent } from './base/spinner.component';
+import { VisualizarEmpresaComponent } from './empresa/crud/empresa-crud/visualizar-empresa/visualizar-empresa.component';
+import { AdicionarEditarEmpresaComponent } from './empresa/crud/empresa-crud/adicionar-editar-empresa/adicionar-editar-empresa.component';
+import {MatStepperModule} from '@angular/material/stepper';
 
 export let options: Partial<IConfig> | (() => Partial<IConfig>);
 
@@ -43,7 +46,9 @@ export let options: Partial<IConfig> | (() => Partial<IConfig>);
     EmpresaComponent,
     InputCpfCnpjComponent,
     PipeCpfCnpj,
-    PaginationDataTable
+    PaginationDataTable,
+    VisualizarEmpresaComponent,
+    AdicionarEditarEmpresaComponent
   ],
   imports: [
     BrowserModule,
@@ -69,6 +74,7 @@ export let options: Partial<IConfig> | (() => Partial<IConfig>);
     MatPaginatorModule,
     MatProgressSpinnerModule,
     OverlayModule,
+    MatStepperModule
   ],
   providers: [AuthGuard,PadraoService,bObservableUsuario,ObservableBlockPanel,SpinnerComponent, MatSpinner,
     PipeCpfCnpj,

@@ -1,0 +1,40 @@
+<div class="tela-cadastro" fxLayout="column">
+	<div  fxLayout="row">
+		<mat-toolbar style="background-color: #111E6C;"><h1 style="color: white;">Empresa</h1></mat-toolbar>
+	</div>
+	<div  fxLayout="row" fxFlex="15%" fxLayoutAlign="space-between center">
+        <button mat-raised-button style="height: min-content; width: 200px;margin-left: 60px;"><mat-icon>arrow_back</mat-icon> Voltar</button>
+        <h1>Cadastrar</h1>
+		<button mat-raised-button style="height: min-content; width: 200px; margin-right: 60px;" color="primary"><mat-icon>create</mat-icon> Salvar</button>
+	</div>
+    <div  fxLayout="row" fxLayoutAlign="center start" fxFlex="100%">
+        <div class="mat-elevation-z1 template-cadastro" fxLayout="Column" fxFlex="100%">
+            <mat-vertical-stepper [linear]="true" #stepper>
+                <mat-step [stepControl]="cadastro">
+                    <form [formGroup]="cadastro" fxLayout="column" fxFlex="30%">
+                        <ng-template matStepLabel>Empresa</ng-template>
+                        <div fxLayout="row" fxFlex="30%">
+                            <mat-form-field fxFlex="100%">
+                                <mat-label>CNPJ</mat-label>
+                                <input matInput mask="00.000.000/0000-00" placeholder="CNPJ" formControlName="cnpj">
+                            </mat-form-field>
+                        </div>
+            
+                        <div fxLayout="row" fxFlex="30%">
+                            <mat-form-field fxFlex="100%">
+                                <mat-label>Razão Social</mat-label>
+                                <input matInput placeholder="Razão Social"  formControlName="razaoSocial">
+                            </mat-form-field>
+                        </div>
+                        <div style="margin-top:40px;">
+                            <button mat-raised-button color="primary" matStepperNext>Next</button>
+                        </div>
+                    </form>
+                </mat-step>
+                <mat-step>
+                    <ng-template matStepLabel>Done</ng-template>
+                </mat-step>
+            </mat-vertical-stepper>
+		</div>
+    </div>
+</div>

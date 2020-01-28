@@ -4,14 +4,20 @@ import { AuthGuard } from './autenticacao/auth-guard';
 import { LoginComponent } from './Login/Login.component';
 import { PaginaInicialComponent } from './PaginaInicial/PaginaInicial.component';
 import { EmpresaComponent } from './empresa/empresa.component';
+import { AdicionarEditarEmpresaComponent } from './empresa/crud/empresa-crud/adicionar-editar-empresa/adicionar-editar-empresa.component';
+import { VisualizarEmpresaComponent } from './empresa/crud/empresa-crud/visualizar-empresa/visualizar-empresa.component';
 
 
 const routes: Routes = [
-
-  
-  { path: '', canActivate: [AuthGuard],component: PaginaInicialComponent },
-  { path: 'login', component: LoginComponent },
-  { path: 'empresa', component:EmpresaComponent}
+	
+  	{ path: '', canActivate: [AuthGuard],component: PaginaInicialComponent },
+  	{ path: 'login', component: LoginComponent },
+  	{ path: 'empresa', canActivate:[AuthGuard], children:[
+    	{path:'',component:EmpresaComponent},
+    	{path:'adicionar',component:AdicionarEditarEmpresaComponent},
+    	{path:'editar/:id',component:AdicionarEditarEmpresaComponent},
+    	{path:'visualizar',component:VisualizarEmpresaComponent},
+  	]},
 
 ];
 

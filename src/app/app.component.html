@@ -1,10 +1,10 @@
 
-<mat-toolbar class="mat-elevation-z6" color="primary" style="position: fixed;" *ngIf="isLogged()">
+<mat-toolbar class="mat-elevation-z6" color="primary" style="position: fixed;">
 	<mat-toolbar-row>
 		<span>Ponto Eletrônico</span>
-		<mat-icon style="margin-left: 14px;" (click)="sidenav.toggle()">menu</mat-icon>
+		<mat-icon style="margin-left: 14px;" (click)="sidenav.toggle()"  *ngIf="isLogged()">menu</mat-icon>
 		<span class="example-fill-remaining-space"></span>
-		<button mat-button [matMenuTriggerFor]="menu">
+		<button mat-button [matMenuTriggerFor]="menu"  *ngIf="isLogged()">
 			<mat-icon style="margin-right: 14px; font-size: 30px;">person_pin</mat-icon>
 			<mat-icon>expand_more</mat-icon>
 		</button>
@@ -18,8 +18,8 @@
 </mat-toolbar>
 <mat-sidenav-container class="example-container">
 	<mat-sidenav #sidenav mode="over" [(opened)]="opened" style="width: 15%;">
-		<button mat-menu-item routerLink=""><mat-icon>home</mat-icon> Pagina Inicial</button>
-		<button mat-menu-item routerLink="/empresa"><mat-icon>business</mat-icon> Empresa</button>
+		<button mat-menu-item routerLink=""  (click)="sidenav.close()"><mat-icon>home</mat-icon> Pagina Inicial</button>
+		<button mat-menu-item routerLink="/empresa" (click)="sidenav.close()"><mat-icon>business</mat-icon> Empresa</button>
 	</mat-sidenav>
 
 	<mat-sidenav-content>

@@ -13,3 +13,7 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
     background: #000;
     opacity: 0.75 !important;
   }
+.template-cadastro{
+  background-color: white;
+  padding: 40px;
+}
