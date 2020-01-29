@@ -1,3 +1,13 @@
 table {
     width: 100%;
   }
+
+.mat-column-Id{
+  width: 10%;
+}
+.mat-column-CNPJ{
+  width: 25%;
+}
+.mat-column-Acoes{
+  width:15%;
+}

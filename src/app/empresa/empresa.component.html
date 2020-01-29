@@ -3,23 +3,34 @@
 		<mat-toolbar style="background-color: #111E6C;"><h1 style="color: white;">Empresa</h1></mat-toolbar>
 	</div>
 	<div  fxLayout="row" fxFlex="15%" fxLayoutAlign="end center" style="padding-right: 60px;">
-		<button mat-raised-button style="height: min-content; width: 200px;" color="primary" routerLink="./adicionar"><mat-icon>add</mat-icon> Adicionar</button>
+		<button mat-raised-button style="height: min-content; width: 200px;" color="primary" routerLink="./cadastrar"><mat-icon>add</mat-icon> Adicionar</button>
 	</div>
     <div  fxLayout="row" fxLayoutAlign="center start" fxFlex="100%">
         <div class="mat-elevation-z1" fxLayout="Column" fxFlex="100%">
             <table mat-table [dataSource]="dataSource">
-              <ng-container matColumnDef="Id">
-                <th mat-header-cell *matHeaderCellDef> Id </th>
-                <td mat-cell *matCellDef="let element"> {{element.id}} </td>
-              </ng-container>
-              <ng-container matColumnDef="RazaoSocial">
-                <th mat-header-cell *matHeaderCellDef> Razão Social </th>
-                <td mat-cell *matCellDef="let element"> {{element.razaoSocial}} </td>
-              </ng-container>
-              <ng-container matColumnDef="CNPJ">
-                <th mat-header-cell *matHeaderCellDef> CNPJ </th>
-                <td mat-cell *matCellDef="let element"> {{element.cnpj | cpfCnpj}} </td>
-              </ng-container>
+				<ng-container matColumnDef="Id">
+					<th mat-header-cell *matHeaderCellDef> Id </th>
+					<td mat-cell *matCellDef="let element"> {{element.id}} </td>
+				</ng-container>
+				<ng-container matColumnDef="RazaoSocial">
+					<th mat-header-cell *matHeaderCellDef> Razão Social </th>
+					<td mat-cell *matCellDef="let element"> {{element.razaoSocial}} </td>
+				</ng-container>
+				<ng-container matColumnDef="CNPJ">
+					<th mat-header-cell *matHeaderCellDef> CNPJ </th>
+					<td mat-cell *matCellDef="let element"> {{element.cnpj | cpfCnpj}} </td>
+				</ng-container>
+				<ng-container matColumnDef="Acoes">
+					<th mat-header-cell *matHeaderCellDef> Ações </th>
+					<td mat-cell  *matCellDef="let element" style="padding-left: 30px;">
+						<button mat-mini-fab style="background-color: green;" (click)="editar(element.id)">
+							<mat-icon>edit</mat-icon>
+						</button>
+						<button mat-mini-fab style="background-color: red;margin-left: 30px;">
+							<mat-icon>delete</mat-icon>
+						</button>
+                	</td>
+              	</ng-container>
               <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
               <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
             </table>

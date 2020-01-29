@@ -35,6 +35,7 @@ import { SpinnerComponent } from './base/spinner.component';
 import { VisualizarEmpresaComponent } from './empresa/crud/empresa-crud/visualizar-empresa/visualizar-empresa.component';
 import { AdicionarEditarEmpresaComponent } from './empresa/crud/empresa-crud/adicionar-editar-empresa/adicionar-editar-empresa.component';
 import {MatStepperModule} from '@angular/material/stepper';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
 
 export let options: Partial<IConfig> | (() => Partial<IConfig>);
 
@@ -74,7 +75,8 @@ export let options: Partial<IConfig> | (() => Partial<IConfig>);
     MatPaginatorModule,
     MatProgressSpinnerModule,
     OverlayModule,
-    MatStepperModule
+    MatStepperModule,
+    MatSnackBarModule
   ],
   providers: [AuthGuard,PadraoService,bObservableUsuario,ObservableBlockPanel,SpinnerComponent, MatSpinner,
     PipeCpfCnpj,

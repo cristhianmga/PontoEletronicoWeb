@@ -9,10 +9,11 @@ import { MatTableDataSource } from '@angular/material/table';
 })
 export class EmpresaComponent extends BaseComponent{
   urlController = 'Empresa';
-  displayedColumns: string[] = ['Id','CNPJ','RazaoSocial'];
+  displayedColumns: string[] = ['Id','CNPJ','RazaoSocial','Acoes'];
   dataSource:MatTableDataSource<any> = new MatTableDataSource<any>();
 
   ngOnInit() {
   }
 
+  
 }

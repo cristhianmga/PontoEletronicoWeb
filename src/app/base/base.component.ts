@@ -5,11 +5,18 @@ import { FormGroup, FormArray } from '@angular/forms';
 import { bObservableUsuario, ObservableBlockPanel } from '../util/observable-util';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { SpinnerComponent } from './spinner.component';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({template:''})
 export class BaseComponent implements OnInit {
+	acao:string;
+	controllerName:string;
+	obj: any;
+	afterLoad(optional1?: any, optional2?: any) { };
+    dateValidation: RegExp = /(((\d{4})-(\d{2})-(\d{2})T(\d{2})\:(\d{2})\:(\d{2}))([+-](\d{2})\:(\d{2}))?Z?z?)/;
+	
 
-  	constructor(public service:PadraoService,public router:Router,public activatedRoute:ActivatedRoute,public obsUsuario:bObservableUsuario,public ObsBlockPanel:ObservableBlockPanel,private spinner: SpinnerComponent) { }
+  	constructor(public service:PadraoService,public router:Router,public activatedRoute:ActivatedRoute,public obsUsuario:bObservableUsuario,public ObsBlockPanel:ObservableBlockPanel,private spinner: SpinnerComponent,private _snackBar: MatSnackBar) { }
 	verificarToken() {
 		const helper = new JwtHelperService();
 		var tempo;
@@ -34,6 +41,14 @@ export class BaseComponent implements OnInit {
 		this.verificarToken();
 	}
 
+	
+	openSnackBar(message: string, botao: string) {
+		this._snackBar.open(message, botao, {
+		  duration: 10000,
+		  horizontalPosition:'right',
+		  verticalPosition:'top'
+		});
+	}
   
 	touchAll(formGroup: FormGroup | FormArray, func = 'markAsDirty', opts = { onlySelf: false }): void {
 		Object.keys(formGroup.controls).map((key, index) => {
@@ -44,6 +59,34 @@ export class BaseComponent implements OnInit {
 				obj[func](opts);
 		});
 	}
+
+	editar(id){
+		this.router.navigate(['./editar',id],{relativeTo:this.activatedRoute})
+	}
+
+	voltar(){
+		if(this.acao == 'cadastrar'){
+			this.router.navigate(['../'],{relativeTo:this.activatedRoute});
+		}else{
+			this.router.navigate(['../../'],{relativeTo:this.activatedRoute});
+		}
+	}
+
+    carregarEditar(){
+		this.ObsBlockPanel.setBlockedPanel(true);
+        this.activatedRoute.params.subscribe(params => {
+			var id = params['id'];
+            this.service.Obter(this.controllerName, id).subscribe(obj => {
+                Object.keys(obj).forEach(key => {
+                    obj[key] = this.dateValidation.test(obj[key]) ? new Date(obj[key]) : obj[key];
+                });
+                this.obj = obj;
+                this.afterLoad();
+            },
+            err => {this.ObsBlockPanel.setBlockedPanel(false)},() => this.ObsBlockPanel.setBlockedPanel(false));
+
+        });
+    }
 
 	public limpaCaracterEspecial(campo: string): string {
         if (campo != null)

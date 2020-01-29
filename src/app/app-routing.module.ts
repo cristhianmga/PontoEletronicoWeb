@@ -14,7 +14,7 @@ const routes: Routes = [
   	{ path: 'login', component: LoginComponent },
   	{ path: 'empresa', canActivate:[AuthGuard], children:[
     	{path:'',component:EmpresaComponent},
-    	{path:'adicionar',component:AdicionarEditarEmpresaComponent},
+    	{path:'cadastrar',component:AdicionarEditarEmpresaComponent},
     	{path:'editar/:id',component:AdicionarEditarEmpresaComponent},
     	{path:'visualizar',component:VisualizarEmpresaComponent},
   	]},
