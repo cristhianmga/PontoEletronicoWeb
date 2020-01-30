@@ -4,8 +4,8 @@ import { AuthGuard } from './autenticacao/auth-guard';
 import { LoginComponent } from './Login/Login.component';
 import { PaginaInicialComponent } from './PaginaInicial/PaginaInicial.component';
 import { EmpresaComponent } from './empresa/empresa.component';
-import { AdicionarEditarEmpresaComponent } from './empresa/crud/empresa-crud/adicionar-editar-empresa/adicionar-editar-empresa.component';
-import { VisualizarEmpresaComponent } from './empresa/crud/empresa-crud/visualizar-empresa/visualizar-empresa.component';
+import { AdicionarEditarEmpresaComponent } from './empresa/crud/adicionar-editar-empresa/adicionar-editar-empresa.component';
+import { VisualizarEmpresaComponent } from './empresa/crud/visualizar-empresa/visualizar-empresa.component';
 
 
 const routes: Routes = [
@@ -16,7 +16,7 @@ const routes: Routes = [
     	{path:'',component:EmpresaComponent},
     	{path:'cadastrar',component:AdicionarEditarEmpresaComponent},
     	{path:'editar/:id',component:AdicionarEditarEmpresaComponent},
-    	{path:'visualizar',component:VisualizarEmpresaComponent},
+    	{path:'visualizar/:id',component:VisualizarEmpresaComponent},
   	]},
 
 ];
