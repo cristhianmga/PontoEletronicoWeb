@@ -36,6 +36,8 @@ import { VisualizarEmpresaComponent } from './empresa/crud/empresa-crud/visualiz
 import { AdicionarEditarEmpresaComponent } from './empresa/crud/empresa-crud/adicionar-editar-empresa/adicionar-editar-empresa.component';
 import {MatStepperModule} from '@angular/material/stepper';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
+import {MatDialogModule} from '@angular/material/dialog';
+import { DialogConfirmation } from './base/dialog-confirmation.component';
 
 export let options: Partial<IConfig> | (() => Partial<IConfig>);
 
@@ -49,7 +51,8 @@ export let options: Partial<IConfig> | (() => Partial<IConfig>);
     PipeCpfCnpj,
     PaginationDataTable,
     VisualizarEmpresaComponent,
-    AdicionarEditarEmpresaComponent
+    AdicionarEditarEmpresaComponent,
+    DialogConfirmation
   ],
   imports: [
     BrowserModule,
@@ -76,12 +79,13 @@ export let options: Partial<IConfig> | (() => Partial<IConfig>);
     MatProgressSpinnerModule,
     OverlayModule,
     MatStepperModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatDialogModule
   ],
   providers: [AuthGuard,PadraoService,bObservableUsuario,ObservableBlockPanel,SpinnerComponent, MatSpinner,
     PipeCpfCnpj,
     {provide: LOCALE_ID, useValue: 'pt' }],
   bootstrap: [AppComponent],
-  entryComponents: [ MatSpinner ],
+  entryComponents: [ MatSpinner,DialogConfirmation ],
 })
 export class AppModule { }

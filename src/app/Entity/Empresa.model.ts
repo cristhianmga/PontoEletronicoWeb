@@ -3,8 +3,8 @@ export class Empresa{
     public CNPJ:string;
     public RazaoSocial:string;
 
-    constructor(CNPJ,RazaoSocial,Id?){
-        this.Id = Id;
+    constructor(CNPJ,RazaoSocial,Id){
+        this.Id = Id == null ? 0 : Id;
         this.CNPJ = CNPJ;
         this.RazaoSocial = RazaoSocial;
     }

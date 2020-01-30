@@ -6,6 +6,8 @@ import { bObservableUsuario, ObservableBlockPanel } from '../util/observable-uti
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { SpinnerComponent } from './spinner.component';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatDialog } from '@angular/material/dialog';
+import { DialogConfirmation } from './dialog-confirmation.component';
 
 @Component({template:''})
 export class BaseComponent implements OnInit {
@@ -16,7 +18,8 @@ export class BaseComponent implements OnInit {
     dateValidation: RegExp = /(((\d{4})-(\d{2})-(\d{2})T(\d{2})\:(\d{2})\:(\d{2}))([+-](\d{2})\:(\d{2}))?Z?z?)/;
 	
 
-  	constructor(public service:PadraoService,public router:Router,public activatedRoute:ActivatedRoute,public obsUsuario:bObservableUsuario,public ObsBlockPanel:ObservableBlockPanel,private spinner: SpinnerComponent,private _snackBar: MatSnackBar) { }
+	  constructor(public service:PadraoService,public router:Router,public activatedRoute:ActivatedRoute,public obsUsuario:bObservableUsuario,
+					public ObsBlockPanel:ObservableBlockPanel,private spinner: SpinnerComponent,private _snackBar: MatSnackBar,public dialog: MatDialog) { }
 	verificarToken() {
 		const helper = new JwtHelperService();
 		var tempo;
@@ -60,10 +63,6 @@ export class BaseComponent implements OnInit {
 		});
 	}
 
-	editar(id){
-		this.router.navigate(['./editar',id],{relativeTo:this.activatedRoute})
-	}
-
 	voltar(){
 		if(this.acao == 'cadastrar'){
 			this.router.navigate(['../'],{relativeTo:this.activatedRoute});
@@ -86,7 +85,7 @@ export class BaseComponent implements OnInit {
             err => {this.ObsBlockPanel.setBlockedPanel(false)},() => this.ObsBlockPanel.setBlockedPanel(false));
 
         });
-    }
+	}
 
 	public limpaCaracterEspecial(campo: string): string {
         if (campo != null)

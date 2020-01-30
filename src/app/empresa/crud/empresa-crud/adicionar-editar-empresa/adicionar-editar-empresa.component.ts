@@ -43,11 +43,18 @@ export class AdicionarEditarEmpresaComponent extends BaseComponent {
 			}
 		})
 		if(state){
-			this.empresa = new Empresa(this.limpaCaracterEspecial(this.cadastro.get('cnpj').value),this.cadastro.get('razaoSocial').value);
-			this.service.Adicionar('empresa',this.empresa).subscribe(x => {
-				this.openSnackBar('Incluido','Ok');
-				this.router.navigate(['../'],{relativeTo:this.activatedRoute})
-			},error => {this.openSnackBar('erro','Ok')},() => this.ObsBlockPanel.setBlockedPanel(false))
+			this.empresa = new Empresa(this.limpaCaracterEspecial(this.cadastro.get('cnpj').value),this.cadastro.get('razaoSocial').value,this.cadastro.get('id').value);
+			if(this.acao == 'cadastrar'){
+				this.service.Adicionar('empresa',this.empresa).subscribe(x => {
+					this.openSnackBar('Incluido com sucesso','Ok');
+					this.router.navigate(['../'],{relativeTo:this.activatedRoute})
+				},error => {this.openSnackBar('erro','Ok')},() => this.ObsBlockPanel.setBlockedPanel(false))
+			}else{
+				this.service.Atualizar('empresa',this.empresa).subscribe(x => {
+					this.openSnackBar('Atualizado com sucesso','Ok');
+					this.router.navigate(['../../'],{relativeTo:this.activatedRoute})
+				},error => {this.openSnackBar('erro','Ok')},() => this.ObsBlockPanel.setBlockedPanel(false))
+			}
 		}else{
 			this.ObsBlockPanel.setBlockedPanel(false)
 			this.myStepper.next();
