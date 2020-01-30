@@ -1,1 +1,14 @@
-<p>minha-empresa works!</p>
+<div class="tela-cadastro" fxLayout="column">
+	<div  fxLayout="row">
+		<mat-toolbar style="background-color: #111E6C;"><h1 style="color: white;">Empresa</h1></mat-toolbar>
+	</div>
+	<div  fxLayout="row" fxFlex="15%" fxLayoutAlign="space-between center">
+        <button mat-raised-button style="height: min-content; width: 200px;margin-left: 60px;" (click)="voltar()"><mat-icon>arrow_back</mat-icon> Voltar</button>
+        <h1>{{acao | titlecase}}</h1>
+		<button mat-raised-button style="height: min-content; width: 200px; margin-right: 60px;" color="primary" (click)="salvar()"><mat-icon>create</mat-icon> Salvar</button>
+	</div>
+    <div  fxLayout="row" fxLayoutAlign="center start" fxFlex="100%">
+        <div class="mat-elevation-z1 template-cadastro" fxLayout="Column" fxFlex="100%">
+		</div>
+    </div>
+</div>

@@ -6,6 +6,7 @@ import { PaginaInicialComponent } from './PaginaInicial/PaginaInicial.component'
 import { EmpresaComponent } from './empresa/empresa.component';
 import { AdicionarEditarEmpresaComponent } from './empresa/crud/adicionar-editar-empresa/adicionar-editar-empresa.component';
 import { VisualizarEmpresaComponent } from './empresa/crud/visualizar-empresa/visualizar-empresa.component';
+import { MinhaEmpresaComponent } from './empresa/minha-empresa/minha-empresa.component';
 
 
 const routes: Routes = [
@@ -16,7 +17,8 @@ const routes: Routes = [
     	{path:'',component:EmpresaComponent},
     	{path:'cadastrar',component:AdicionarEditarEmpresaComponent},
     	{path:'editar/:id',component:AdicionarEditarEmpresaComponent},
-    	{path:'visualizar/:id',component:VisualizarEmpresaComponent},
+		{path:'visualizar/:id',component:VisualizarEmpresaComponent},
+		{path:'minha-empresa',component:MinhaEmpresaComponent}
   	]},
 
 ];
