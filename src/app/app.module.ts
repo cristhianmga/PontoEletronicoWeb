@@ -39,6 +39,8 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {MatDialogModule} from '@angular/material/dialog';
 import { DialogConfirmation } from './base/dialog-confirmation.component';
 import { MinhaEmpresaComponent } from './empresa/minha-empresa/minha-empresa.component';
+import {MatExpansionModule} from '@angular/material/expansion';
+
 
 export let options: Partial<IConfig> | (() => Partial<IConfig>);
 
@@ -82,7 +84,8 @@ export let options: Partial<IConfig> | (() => Partial<IConfig>);
     OverlayModule,
     MatStepperModule,
     MatSnackBarModule,
-    MatDialogModule
+    MatDialogModule,
+    MatExpansionModule
   ],
   providers: [AuthGuard,PadraoService,bObservableUsuario,ObservableBlockPanel,SpinnerComponent, MatSpinner,
     PipeCpfCnpj,

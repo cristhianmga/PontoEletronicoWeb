@@ -2,13 +2,84 @@
 	<div  fxLayout="row">
 		<mat-toolbar style="background-color: #111E6C;"><h1 style="color: white;">Empresa</h1></mat-toolbar>
 	</div>
-	<div  fxLayout="row" fxFlex="15%" fxLayoutAlign="space-between center">
+	<div  fxLayout="row" style="min-height: 15%;" fxLayoutAlign="space-between center">
         <button mat-raised-button style="height: min-content; width: 200px;margin-left: 60px;" (click)="voltar()"><mat-icon>arrow_back</mat-icon> Voltar</button>
-        <h1>{{acao | titlecase}}</h1>
-		<button mat-raised-button style="height: min-content; width: 200px; margin-right: 60px;" color="primary" (click)="salvar()"><mat-icon>create</mat-icon> Salvar</button>
+		<button mat-raised-button style="height: min-content; width: 200px; margin-right: 60px;background-color: orangered;" (click)="salvar()"><mat-icon>person_add</mat-icon> Adicionar Funcionário</button>
+		<button mat-raised-button style="height: min-content; width: 200px; margin-right: 60px;" color="primary" (click)="salvar()"><mat-icon>supervisor_account</mat-icon> Adicionar Responsáveis</button>
 	</div>
     <div  fxLayout="row" fxLayoutAlign="center start" fxFlex="100%">
         <div class="mat-elevation-z1 template-cadastro" fxLayout="Column" fxFlex="100%">
+			<div  fxLayout="row" fxLayoutAlign="space-evenly start" fxFlex="100%">
+				<div fxLayout="Column" fxFlex="45%">
+					<mat-accordion class="headers-align">
+						<mat-expansion-panel>
+							<mat-expansion-panel-header style="background-color:gray;">
+								<mat-panel-title ><strong>Informações da empresa</strong></mat-panel-title >
+								<mat-panel-description>
+									Dados da empresa 
+									<mat-icon>business</mat-icon>
+								</mat-panel-description>
+							</mat-expansion-panel-header>
+
+						</mat-expansion-panel>
+					</mat-accordion>
+				</div>
+				<div fxLayout="Column" fxFlex="45%">
+					<mat-accordion class="headers-align">
+						<mat-expansion-panel>
+							<mat-expansion-panel-header style="background-color:gray;">
+								<mat-panel-title ><strong>Responsáveis da empresa</strong></mat-panel-title >
+								<mat-panel-description>
+									Responsáveis com autorização de modificação 
+									<mat-icon>business</mat-icon>
+								</mat-panel-description>
+							</mat-expansion-panel-header>
+
+							
+							<div fxLayout="row" fxFlex="30%">
+								<mat-label><strong>CNPJ:</strong> {{cadastro.get('cnpj').value | cpfCnpj}}</mat-label>
+							</div>
+							<br>
+							<div fxLayout="row" fxFlex="30%">
+								<mat-label><strong>Razão Social:</strong> {{cadastro.get('razaoSocial').value}}</mat-label>
+							</div>
+						</mat-expansion-panel>
+					</mat-accordion>
+				</div>
+			</div>
+			<h2>Funcionários</h2>
+			<div fxLayout="row" fxLayoutAlign="center start" fxFlex="100%" style="padding-top: 30px;">
+				<div fxLayout="Column" fxFlex="100%">
+					<table mat-table [dataSource]="dataSource">
+						<ng-container matColumnDef="Id">
+							<th mat-header-cell *matHeaderCellDef> Id </th>
+							<td mat-cell *matCellDef="let element"> {{element.id}} </td>
+						</ng-container>
+						<ng-container matColumnDef="RazaoSocial">
+							<th mat-header-cell *matHeaderCellDef> Razão Social </th>
+							<td mat-cell *matCellDef="let element"> {{element.razaoSocial}} </td>
+						</ng-container>
+						<ng-container matColumnDef="CNPJ">
+							<th mat-header-cell *matHeaderCellDef> CNPJ </th>
+							<td mat-cell *matCellDef="let element"> {{element.cnpj | cpfCnpj}} </td>
+						</ng-container>
+						<ng-container matColumnDef="Acoes">
+							<th mat-header-cell *matHeaderCellDef> Ações </th>
+							<td mat-cell  *matCellDef="let element" style="padding-left: 30px;">
+								<button mat-mini-fab style="background-color: green;" (click)="editar(element.id)">
+									<mat-icon>edit</mat-icon>
+								</button>
+								<button mat-mini-fab style="background-color: red;margin-left: 30px;" (click)="openDialog(element.id,urlController)">
+									<mat-icon>delete</mat-icon>
+								</button>
+							</td>
+						</ng-container>
+					<tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+					<tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+					</table>
+					<pagination-data-table [url]="urlController" [(dataSource)]="dataSource"></pagination-data-table>
+				</div>
+			</div>
 		</div>
-    </div>
+	</div>
 </div>
