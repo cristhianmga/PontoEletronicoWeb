@@ -4,6 +4,9 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ValidCpfORCnpj } from 'src/app/util/custom.validators';
 import { MatStep, MatVerticalStepper } from '@angular/material/stepper';
 import { Empresa } from 'src/app/Entity/Empresa.model';
+import { DadosContratacaoFuncionario } from 'src/app/Entity/dados-contratacao-funcionario.model';
+import { Funcionario } from 'src/app/Entity/funcionario.model';
+import { sha256 } from 'js-sha256';
 
 @Component({
   selector: 'app-adicionar-editar-empresa',
@@ -17,7 +20,13 @@ export class AdicionarEditarEmpresaComponent extends BaseComponent {
 		razaoSocial:[null,[Validators.required]],
 		id:[null]
 	});
-	empresa:Empresa;
+	dono:FormGroup = new FormBuilder().group({
+		id:[0],
+		nome:[null],
+		cpf:[null],
+		email:[null]
+	});
+	dados:DadosContratacaoFuncionario;
 
   	@ViewChild('stepper',{static:true}) private myStepper: MatVerticalStepper;
 
@@ -43,17 +52,19 @@ export class AdicionarEditarEmpresaComponent extends BaseComponent {
 			}
 		})
 		if(state){
-			this.empresa = new Empresa(this.limpaCaracterEspecial(this.cadastro.get('cnpj').value),this.cadastro.get('razaoSocial').value,this.cadastro.get('id').value);
+			var empresa = new Empresa(this.limpaCaracterEspecial(this.cadastro.get('cnpj').value),this.cadastro.get('razaoSocial').value,this.cadastro.get('id').value);
 			if(this.acao == 'cadastrar'){
-				this.service.Adicionar('empresa',this.empresa).subscribe(x => {
+				var funcionario = new Funcionario(this.dono.get('id').value,this.dono.get('nome').value,this.limpaCaracterEspecial(this.dono.get('cpf').value),this.dono.get('email').value,sha256('temp@123'));
+				this.dados = new DadosContratacaoFuncionario(0,empresa,funcionario);
+				this.service.Adicionar('empresa',this.dados).subscribe(x => {
 					this.openSnackBar('Incluido com sucesso','Ok');
 					this.router.navigate(['../'],{relativeTo:this.activatedRoute})
-				},error => {this.openSnackBar('erro','Ok')},() => this.ObsBlockPanel.setBlockedPanel(false))
+				},error => {this.openSnackBar('erro','Ok');this.ObsBlockPanel.setBlockedPanel(false)},() => this.ObsBlockPanel.setBlockedPanel(false))
 			}else{
-				this.service.Atualizar('empresa',this.empresa).subscribe(x => {
+				this.service.Atualizar('empresa',empresa).subscribe(x => {
 					this.openSnackBar('Atualizado com sucesso','Ok');
 					this.router.navigate(['../../'],{relativeTo:this.activatedRoute})
-				},error => {this.openSnackBar('erro','Ok')},() => this.ObsBlockPanel.setBlockedPanel(false))
+				},error => {this.openSnackBar('erro','Ok');this.ObsBlockPanel.setBlockedPanel(false)},() => this.ObsBlockPanel.setBlockedPanel(false))
 			}
 		}else{
 			this.ObsBlockPanel.setBlockedPanel(false)

@@ -27,7 +27,7 @@ export class PaginationDataTable extends BaseComponent{
             this.dataSource = new MatTableDataSource(x.content);
             this.maxitens = x.totalElements;
             this.dataSourceChange.emit(this.dataSource);
-        },error => console.log(error),() => this.ObsBlockPanel.setBlockedPanel(false));
+        },error => this.ObsBlockPanel.setBlockedPanel(false),() => this.ObsBlockPanel.setBlockedPanel(false));
     }
 
     trocaPage(event){
@@ -36,16 +36,15 @@ export class PaginationDataTable extends BaseComponent{
             this.dataSource = new MatTableDataSource(x.content);
             this.maxitens = x.totalElements;
             this.dataSourceChange.emit(this.dataSource);
-        },error => console.log(error),() => this.ObsBlockPanel.setBlockedPanel(false));
+        },error => this.ObsBlockPanel.setBlockedPanel(false),() => this.ObsBlockPanel.setBlockedPanel(false));
     }
 
     recarregarPage(url){
         this.service.ObterTodosPaginado(url,new Paginacao(0,5,"","")).subscribe(x => {
             this.dataSource = new MatTableDataSource(x.content);
             this.maxitens = x.totalElements;
-            console.log(this.paginator);
             this.dataSourceChange.emit(this.dataSource);
-        },error => console.log(error),() => this.ObsBlockPanel.setBlockedPanel(false));
+        },error => this.ObsBlockPanel.setBlockedPanel(false),() => this.ObsBlockPanel.setBlockedPanel(false));
     }
 
     openDialog(id,url): void {

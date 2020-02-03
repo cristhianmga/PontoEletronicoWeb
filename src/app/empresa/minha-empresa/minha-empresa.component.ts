@@ -9,8 +9,8 @@ import { MatTableDataSource } from '@angular/material/table';
   styleUrls: ['./minha-empresa.component.css']
 })
 export class MinhaEmpresaComponent extends BaseComponent {
-  urlController = 'empresa';
-  displayedColumns: string[] = ['Id','CNPJ','RazaoSocial','Acoes'];
+  urlController = 'DadosContratacaoFuncionario';
+  displayedColumns: string[] = ['Id','CPF','Nome','Acoes'];
   dataSource:MatTableDataSource<any> = new MatTableDataSource<any>();
   cadastro:FormGroup = new FormBuilder().group({
     razaoSocial:['algo'],

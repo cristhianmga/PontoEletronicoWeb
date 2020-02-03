@@ -31,6 +31,36 @@
                         </div>
                     </form>
                 </mat-step>
+                
+                <mat-step [stepControl]="dono" *ngIf="acao == 'cadastrar'">
+                    <form [formGroup]="dono" fxLayout="column" fxFlex="30%">
+                        <ng-template matStepLabel>CEO</ng-template>
+                        <div fxLayout="row" fxFlex="30%">
+                            <mat-form-field fxFlex="100%">
+                                <mat-label>CPF</mat-label>
+                                <input matInput mask="000.000.000-00" placeholder="Cpf" formControlName="cpf">
+                            </mat-form-field>
+                        </div>
+            
+                        <div fxLayout="row" fxFlex="30%">
+                            <mat-form-field fxFlex="100%">
+                                <mat-label>Nome</mat-label>
+                                <input matInput placeholder="Nome"  formControlName="nome">
+                            </mat-form-field>
+                        </div>
+            
+                        <div fxLayout="row" fxFlex="30%">
+                            <mat-form-field fxFlex="100%">
+                                <mat-label>Email</mat-label>
+                                <input matInput placeholder="Email"  formControlName="email">
+                            </mat-form-field>
+                        </div>
+                        <div style="margin-top:40px;">
+                            <button mat-raised-button color="primary" matStepperNext>Next</button>
+                        </div>
+                    </form>
+                </mat-step>
+
                 <mat-step [completed]="true">
                     <ng-template matStepLabel>Done</ng-template>
                     <div fxLayout="row" fxFlex="30%">
