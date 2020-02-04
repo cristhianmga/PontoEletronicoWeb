@@ -1,0 +1,104 @@
+<div class="tela-cadastro" fxLayout="column">
+	<div  fxLayout="row">
+		<mat-toolbar style="background-color: #111E6C;"><h1 style="color: white;">Funcionario</h1></mat-toolbar>
+	</div>
+	<div  fxLayout="row" fxFlex="15%" fxLayoutAlign="space-between center">
+        <button mat-raised-button style="height: min-content; width: 200px;margin-left: 60px;" (click)="voltar()"><mat-icon>arrow_back</mat-icon> Voltar</button>
+        <h1>{{acao | titlecase}}</h1>
+		<button mat-raised-button style="height: min-content; width: 200px; margin-right: 60px;" color="primary" (click)="salvar()"><mat-icon>create</mat-icon> Salvar</button>
+	</div>
+    <div  fxLayout="row" fxLayoutAlign="center start" fxFlex="100%">
+        <div class="mat-elevation-z1 template-cadastro" fxLayout="Column" fxFlex="100%">
+            <mat-vertical-stepper [linear]="false" #stepper>
+                <mat-step [stepControl]="funcionario">
+                    <form [formGroup]="funcionario" fxLayout="column" fxFlex="30%">
+                        <ng-template matStepLabel>Funcionário</ng-template>
+                        <div fxLayout="row">
+                            <mat-form-field fxFlex="100%">
+                                <mat-label>CPF</mat-label>
+                                <input matInput mask="000.000.000-00" placeholder="CPF" formControlName="cpf">
+                            </mat-form-field>
+                            
+                            <button style="margin-left: 40px;" mat-mini-fab color="primary" (click)="buscarCpf()" *ngIf="!buscado" aria-label="Example icon-button with a heart icon">
+                                <mat-icon>search</mat-icon>
+                            </button>
+                            <button style="margin-left: 40px;" mat-mini-fab color="accent" (click)="voltarBusca()" *ngIf="buscado" aria-label="Example icon-button with a heart icon">
+                                <mat-icon>cancel</mat-icon>
+                            </button>
+                        </div>
+            
+                        <div fxLayout="row">
+                            <mat-form-field fxFlex="100%">
+                                <mat-label>Nome</mat-label>
+                                <input matInput placeholder="Nome"  formControlName="nome">
+                            </mat-form-field>
+                        </div>
+            
+                        <div fxLayout="row">
+                            <mat-form-field fxFlex="100%">
+                                <mat-label>Email</mat-label>
+                                <input matInput placeholder="Email"  formControlName="email">
+                            </mat-form-field>
+                        </div>
+                        <div style="margin-top:40px;">
+                            <button mat-raised-button color="primary" matStepperNext>Next</button>
+                        </div>
+                    </form>
+                </mat-step>
+                
+                <mat-step [stepControl]="dadosForm">
+                    <form [formGroup]="dadosForm" fxLayout="column" fxFlex="30%">
+                        <ng-template matStepLabel>Dados</ng-template>
+            
+                        <div fxLayout="row">
+                            <mat-form-field fxFlex="100%">
+                                <mat-label>Cargo</mat-label>
+                                <input matInput placeholder="Cargo"  formControlName="cargo">
+                            </mat-form-field>
+                        </div>
+
+                        <div fxLayout="row">
+                            <mat-form-field fxFlex="100%">
+                                <mat-label>Carga horária</mat-label>
+                                <input matInput type="time" placeholder="Carga horária"  formControlName="cargaHoraria">
+                            </mat-form-field>
+                        </div>
+
+
+                        <div fxLayout="row">
+                            <mat-form-field fxFlex="100%">
+                                <input matInput [matDatepicker]="picker" placeholder="Data inicio" formControlName="dataInicio">
+                                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                                <mat-datepicker #picker [startAt]="startDate"></mat-datepicker>
+                            </mat-form-field>
+                        </div>
+
+                        <div fxLayout="row">
+                            <mat-form-field fxFlex="100%">
+                                <input matInput [matDatepicker]="picker2" placeholder="Data fim" formControlName="dataFim">
+                                <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+                                <mat-datepicker #picker2 [startAt]="startDate"></mat-datepicker>
+                            </mat-form-field>
+                        </div>
+
+
+                        <div style="margin-top:40px;">
+                            <button mat-raised-button color="primary" matStepperNext>Next</button>
+                        </div>
+                    </form>
+                </mat-step>
+
+                <mat-step [completed]="true">
+                    <ng-template matStepLabel>Done</ng-template>
+                    <!-- <div fxLayout="row" fxFlex="30%">
+                        <mat-label><strong>CNPJ:</strong> {{cadastro.get('cnpj').value | cpfCnpj}}</mat-label>
+                    </div>
+                    <br>
+                    <div fxLayout="row" fxFlex="30%">
+                        <mat-label><strong>Razão Social:</strong> {{cadastro.get('razaoSocial').value}}</mat-label>
+                    </div> -->
+                </mat-step>
+            </mat-vertical-stepper>
+		</div>
+    </div>
+</div>

@@ -7,6 +7,7 @@ import { EmpresaComponent } from './empresa/empresa.component';
 import { AdicionarEditarEmpresaComponent } from './empresa/crud/adicionar-editar-empresa/adicionar-editar-empresa.component';
 import { VisualizarEmpresaComponent } from './empresa/crud/visualizar-empresa/visualizar-empresa.component';
 import { MinhaEmpresaComponent } from './empresa/minha-empresa/minha-empresa.component';
+import { FuncionarioComponent } from './funcionario/funcionario.component';
 
 
 const routes: Routes = [
@@ -19,6 +20,9 @@ const routes: Routes = [
     	{path:'editar/:id',component:AdicionarEditarEmpresaComponent},
 		{path:'visualizar/:id',component:VisualizarEmpresaComponent},
 		{path:'minha-empresa',component:MinhaEmpresaComponent}
+  	]},
+  	{ path: 'funcionario', canActivate:[AuthGuard], children:[
+    	{path:'minha-empresa',component:FuncionarioComponent}
   	]},
 
 ];

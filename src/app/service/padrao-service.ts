@@ -26,6 +26,11 @@ export class PadraoService {
     cacheKey,
     refresh
   )
+  ObterCpf = (route: string, cpf: string, cacheKey?: string, refresh: boolean = false) => cacheable(
+    () => this.http.get<any>(`${environment.apiEndpoint}/api/${route}/verificaCpf/${cpf}`,{headers:headers()}),
+    cacheKey,
+    refresh
+  )
   
   ObterTodos = (route: string, cacheKey?: string, refresh: boolean = false) => cacheable(
     () => this.http.get<any[]>(`${environment.apiEndpoint}/api/${route}`,{headers:headers()}),

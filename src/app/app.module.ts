@@ -40,6 +40,9 @@ import {MatDialogModule} from '@angular/material/dialog';
 import { DialogConfirmation } from './base/dialog-confirmation.component';
 import { MinhaEmpresaComponent } from './empresa/minha-empresa/minha-empresa.component';
 import {MatExpansionModule} from '@angular/material/expansion';
+import { FuncionarioComponent } from './funcionario/funcionario.component';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
 
 
 export let options: Partial<IConfig> | (() => Partial<IConfig>);
@@ -56,7 +59,8 @@ export let options: Partial<IConfig> | (() => Partial<IConfig>);
     VisualizarEmpresaComponent,
     AdicionarEditarEmpresaComponent,
     DialogConfirmation,
-    MinhaEmpresaComponent
+    MinhaEmpresaComponent,
+    FuncionarioComponent
   ],
   imports: [
     BrowserModule,
@@ -85,10 +89,12 @@ export let options: Partial<IConfig> | (() => Partial<IConfig>);
     MatStepperModule,
     MatSnackBarModule,
     MatDialogModule,
-    MatExpansionModule
+    MatExpansionModule,
+    MatDatepickerModule,
+    MatNativeDateModule 
   ],
   providers: [AuthGuard,PadraoService,bObservableUsuario,ObservableBlockPanel,SpinnerComponent, MatSpinner,
-    PipeCpfCnpj,
+    PipeCpfCnpj,MatDatepickerModule,  
     {provide: LOCALE_ID, useValue: 'pt' }],
   bootstrap: [AppComponent],
   entryComponents: [ MatSpinner,DialogConfirmation ],
