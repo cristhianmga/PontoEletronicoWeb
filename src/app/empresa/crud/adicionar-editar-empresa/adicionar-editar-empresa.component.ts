@@ -7,6 +7,7 @@ import { Empresa } from 'src/app/Entity/Empresa.model';
 import { DadosContratacaoFuncionario } from 'src/app/Entity/dados-contratacao-funcionario.model';
 import { Funcionario } from 'src/app/Entity/funcionario.model';
 import { sha256 } from 'js-sha256';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-adicionar-editar-empresa',
@@ -54,7 +55,7 @@ export class AdicionarEditarEmpresaComponent extends BaseComponent {
 		if(state){
 			var empresa = new Empresa(this.limpaCaracterEspecial(this.cadastro.get('cnpj').value),this.cadastro.get('razaoSocial').value,this.cadastro.get('id').value);
 			if(this.acao == 'cadastrar'){
-				var funcionario = new Funcionario(this.dono.get('id').value,this.dono.get('nome').value,this.limpaCaracterEspecial(this.dono.get('cpf').value),this.dono.get('email').value,sha256('temp@123'));
+				var funcionario = new Funcionario(this.dono.get('id').value,this.dono.get('nome').value,this.limpaCaracterEspecial(this.dono.get('cpf').value),this.dono.get('email').value,environment.senhaPadrao);
 				this.dados = new DadosContratacaoFuncionario(0,empresa,funcionario);
 				this.service.Adicionar('empresa',this.dados).subscribe(x => {
 					this.openSnackBar('Incluido com sucesso','Ok');

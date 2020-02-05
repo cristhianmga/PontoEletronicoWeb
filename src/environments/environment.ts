@@ -5,7 +5,8 @@
 export const environment = {
   production: false,
   // apiEndpoint: 'https://localhost:44354'
-  apiEndpoint: 'https://localhost:5001'
+  apiEndpoint: 'https://localhost:5001',
+  senhaPadrao: 'ba2df526dd770866fd1ae47fb641e7fbe38a0c5dc86a90ba431519431548c09e'
 };
 
 /*

@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { CanActivate, CanActivateChild, Router, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
 import { bObservableUsuario } from '../util/observable-util';
 import { Subscription } from 'rxjs';
+import { PadraoService } from '../service/padrao-service';
 
 @Injectable()
 export class AuthGuard implements CanActivate, CanActivateChild {
@@ -10,7 +11,7 @@ export class AuthGuard implements CanActivate, CanActivateChild {
 	token:string = localStorage.getItem('token');
     
 constructor(private router: Router,
-			private observableUsuario:bObservableUsuario) { }
+			private observableUsuario:bObservableUsuario,private service:PadraoService) { }
 
   
 
@@ -18,11 +19,24 @@ constructor(private router: Router,
     if(this.token == null){
 		this.router.navigate(['/login']);
 	}else{
+		this.observableUsuario.getValue.subscribe(x => {
+			if(x || x != ""){
+				
+			}else{
+				this.buscarDadosUsuario();
+			}
+		})
 		// return this.verificaUsuario(state);
 		return true;
 	}
   }
   canActivateChild = (route: ActivatedRouteSnapshot, state: RouterStateSnapshot) => this.canActivate(route,state);
+
+  buscarDadosUsuario(){
+	this.service.ObterDadosUsuario().subscribe(x => {
+		this.observableUsuario.setValue(x);
+	  });
+  }
 
   isLogged(){
     var token = localStorage.getItem('token');

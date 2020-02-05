@@ -21,12 +21,19 @@ import { Login } from '../Entity/Login.model';
     }
   
     login(){
+      this.ObsBlockPanel.setBlockedPanel(true);
       this.Login = new Login(this.limpaCaracterEspecial(this.loginForm.get('cpf').value),this.loginForm.get('senha').value);
       this.service.ObterToken(this.Login).subscribe(retorno => {
         if(retorno.authenticated){
           localStorage.setItem('token',retorno.accessToken);
           this.router.navigate(['']);
         }
+      },
+      error => {
+        this.ObsBlockPanel.setBlockedPanel(false);
+      },
+      () =>{   
+        this.ObsBlockPanel.setBlockedPanel(false);
       });
     }
   
