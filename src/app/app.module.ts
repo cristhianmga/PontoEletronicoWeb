@@ -43,6 +43,8 @@ import {MatExpansionModule} from '@angular/material/expansion';
 import { FuncionarioComponent } from './funcionario/funcionario.component';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
+import { AgmCoreModule } from '@agm/core';
+import { LocalicazaoComponent } from './empresa/localicazao/localicazao.component';
 
 
 export let options: Partial<IConfig> | (() => Partial<IConfig>);
@@ -60,7 +62,8 @@ export let options: Partial<IConfig> | (() => Partial<IConfig>);
     AdicionarEditarEmpresaComponent,
     DialogConfirmation,
     MinhaEmpresaComponent,
-    FuncionarioComponent
+    FuncionarioComponent,
+    LocalicazaoComponent
   ],
   imports: [
     BrowserModule,
@@ -91,7 +94,11 @@ export let options: Partial<IConfig> | (() => Partial<IConfig>);
     MatDialogModule,
     MatExpansionModule,
     MatDatepickerModule,
-    MatNativeDateModule 
+    MatNativeDateModule ,
+    AgmCoreModule.forRoot({
+      apiKey: 'AIzaSyA9TL1CgSdWOj4HsLsRSfzuUDfWnvZuvDA',
+      libraries: ['places']
+    })
   ],
   providers: [AuthGuard,PadraoService,bObservableUsuario,ObservableBlockPanel,SpinnerComponent, MatSpinner,
     PipeCpfCnpj,MatDatepickerModule,  

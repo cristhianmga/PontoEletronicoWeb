@@ -1,11 +1,11 @@
 <div class="tela-cadastro" fxLayout="column">
 	<div  fxLayout="row">
-		<mat-toolbar style="background-color: #111E6C;"><h1 style="color: white;">Empresa</h1></mat-toolbar>
+		<mat-toolbar style="background-color: #111E6C;"><h1 style="color: white;">Minha Empresa</h1></mat-toolbar>
 	</div>
 	<div  fxLayout="row" style="min-height: 15%;" fxLayoutAlign="space-between center">
         <button mat-raised-button style="height: min-content; width: 200px;margin-left: 60px;" (click)="voltar()"><mat-icon>arrow_back</mat-icon> Voltar</button>
-		<button mat-raised-button style="height: min-content; width: 200px; margin-right: 60px;background-color: orangered;" (click)="salvar()"><mat-icon>person_add</mat-icon> Adicionar Funcionário</button>
-		<button mat-raised-button style="height: min-content; width: 200px; margin-right: 60px;" color="primary" (click)="salvar()"><mat-icon>supervisor_account</mat-icon> Adicionar Responsáveis</button>
+		<button mat-raised-button style="height: min-content; width: 200px; margin-right: 60px;background-color: orangered;" (click)="IrParaAdicionarFuncionario()"><mat-icon>person_add</mat-icon> Adicionar Funcionário</button>
+		<button mat-raised-button style="height: min-content; width: 200px; margin-right: 60px;" color="primary" (click)="IrParaAdicionarResponsaveis()"><mat-icon>supervisor_account</mat-icon> Adicionar Responsáveis</button>
 	</div>
     <div  fxLayout="row" fxLayoutAlign="center start" fxFlex="100%">
         <div class="mat-elevation-z1 template-cadastro" fxLayout="Column" fxFlex="100%">
@@ -13,7 +13,7 @@
 				<div fxLayout="Column" fxFlex="45%">
 					<mat-accordion class="headers-align">
 						<mat-expansion-panel>
-							<mat-expansion-panel-header style="background-color:gray;">
+							<mat-expansion-panel-header style="background-color:#D3D3D3;">
 								<mat-panel-title ><strong>Informações</strong></mat-panel-title >
 								<mat-panel-description>
 									Dados da empresa 
@@ -21,28 +21,29 @@
 								</mat-panel-description>
 							</mat-expansion-panel-header>
 
+							<div fxLayout="column">
+								<div fxLayout="row" fxFlex="100%" *ngIf="empresa" style="padding-top:40px">
+									<mat-label><strong>CNPJ:</strong> {{empresa.CNPJ | cpfCnpj}}</mat-label>
+								</div>
+								<div
+								fxLayout="row" fxFlex="100%" style="padding-top:40px"  *ngIf="empresa">
+									<mat-label><strong>Razão Social:</strong> {{empresa.RazaoSocial}}</mat-label>
+								</div>
+							</div>
+
 						</mat-expansion-panel>
 					</mat-accordion>
 				</div>
 				<div fxLayout="Column" fxFlex="45%">
 					<mat-accordion class="headers-align">
 						<mat-expansion-panel>
-							<mat-expansion-panel-header style="background-color:gray;">
+							<mat-expansion-panel-header style="background-color:#D3D3D3;">
 								<mat-panel-title ><strong>Responsáveis</strong></mat-panel-title >
 								<mat-panel-description>
 									Responsáveis com autorização de modificação 
-									<mat-icon>business</mat-icon>
+									<mat-icon>group</mat-icon>
 								</mat-panel-description>
 							</mat-expansion-panel-header>
-
-							
-							<div fxLayout="row" fxFlex="30%">
-								<mat-label><strong>CNPJ:</strong> {{cadastro.get('cnpj').value | cpfCnpj}}</mat-label>
-							</div>
-							<br>
-							<div fxLayout="row" fxFlex="30%">
-								<mat-label><strong>Razão Social:</strong> {{cadastro.get('razaoSocial').value}}</mat-label>
-							</div>
 						</mat-expansion-panel>
 					</mat-accordion>
 				</div>

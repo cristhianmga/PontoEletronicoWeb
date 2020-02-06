@@ -19,10 +19,10 @@
                                 <input matInput mask="000.000.000-00" placeholder="CPF" formControlName="cpf">
                             </mat-form-field>
                             
-                            <button style="margin-left: 40px;" mat-mini-fab color="primary" (click)="buscarCpf()" *ngIf="!buscado" aria-label="Example icon-button with a heart icon">
+                            <button style="margin-left: 40px;" mat-mini-fab color="primary" (click)="buscarCpf()" *ngIf="!buscado">
                                 <mat-icon>search</mat-icon>
                             </button>
-                            <button style="margin-left: 40px;" mat-mini-fab color="accent" (click)="voltarBusca()" *ngIf="buscado" aria-label="Example icon-button with a heart icon">
+                            <button style="margin-left: 40px;background-color: red;" mat-mini-fab (click)="voltarBusca()" *ngIf="buscado">
                                 <mat-icon>cancel</mat-icon>
                             </button>
                         </div>

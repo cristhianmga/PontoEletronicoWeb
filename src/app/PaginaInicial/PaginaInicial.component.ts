@@ -13,4 +13,7 @@ import { FormBuilder } from '@angular/forms';
     ngOnInit() {
     }
   
+    MinhaEmpresa(){
+      this.router.navigate(['./empresa/minha-empresa'])
+    }
   }
