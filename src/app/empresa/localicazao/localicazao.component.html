@@ -2,23 +2,29 @@
 	<div  fxLayout="row">
 		<mat-toolbar style="background-color: #111E6C;"><h1 style="color: white;">Funcionario</h1></mat-toolbar>
 	</div>
-	<div  fxLayout="row" fxFlex="15%" fxLayoutAlign="space-between center">
-        <button mat-raised-button style="height: min-content; width: 200px;margin-left: 60px;" (click)="voltar()"><mat-icon>arrow_back</mat-icon> Voltar</button>
+	<div  fxLayout="row" style="min-height: 15%;"  fxLayoutAlign="space-between center">
+        <button mat-raised-button style="width: 200px;margin-left: 60px;" (click)="voltar()"><mat-icon>arrow_back</mat-icon> Voltar</button>
         <h1 *ngIf="empresa">{{empresa.RazaoSocial | titlecase}}</h1>
-		<button mat-raised-button style="height: min-content; width: 200px; margin-right: 60px;" color="primary" (click)="salvar()"><mat-icon>create</mat-icon> Salvar</button>
+		<button mat-raised-button style="width: 200px; margin-right: 60px;" color="primary" (click)="salvar()"><mat-icon>create</mat-icon> Salvar</button>
 	</div>
     <div  fxLayout="row" fxLayoutAlign="center start" fxFlex="100%">
         <div class="mat-elevation-z1 template-cadastro" fxLayout="Column" fxFlex="100%">
             <div fxLayout="row" fxFlex="30%">
                 <mat-form-field fxFlex="100%">
                     <mat-label>Search</mat-label>
-                    <input matInput (keydown.enter)="$event.preventDefault()" placeholder="Search Nearest Location" autocorrect="off" autocapitalize="off" spellcheck="off" type="text" #search>
+                    <input matInput (keydown.enter)="$event.preventDefault()" autocorrect="off" autocapitalize="off" spellcheck="off" type="text" #search>
                 </mat-form-field>
             </div>
 
-            <agm-map [latitude]="latitude" [longitude]="longitude" [zoom]="zoom" >
-                <agm-marker [latitude]="latitude" [longitude]="longitude" [markerClickable]="true" (markerClick)="markerClick($event)"></agm-marker>
+            <agm-map [latitude]="latitude" [longitude]="longitude" [zoom]="zoom" (mapClick)="mapaClick($event)">
+                <agm-marker [latitude]="latitude" [longitude]="longitude" [markerClickable]="true" (markerClick)="markerClickFunc($event)"></agm-marker>
             </agm-map>
+
+            <div>
+                <mat-label>{{address}}</mat-label>
+                <mat-label>{{latitude}}</mat-label>
+                <mat-label>{{longitude}}</mat-label>
+            </div>
         </div>
     </div>
 </div>
