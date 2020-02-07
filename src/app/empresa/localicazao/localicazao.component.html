@@ -9,22 +9,47 @@
 	</div>
     <div  fxLayout="row" fxLayoutAlign="center start" fxFlex="100%">
         <div class="mat-elevation-z1 template-cadastro" fxLayout="Column" fxFlex="100%">
-            <div fxLayout="row" fxFlex="30%">
+            <div fxLayout="row" fxFlex="60%">
                 <mat-form-field fxFlex="100%">
                     <mat-label>Search</mat-label>
                     <input matInput (keydown.enter)="$event.preventDefault()" autocorrect="off" autocapitalize="off" spellcheck="off" type="text" #search>
                 </mat-form-field>
             </div>
-
             <agm-map [latitude]="latitude" [longitude]="longitude" [zoom]="zoom" (mapClick)="mapaClick($event)">
                 <agm-marker [latitude]="latitude" [longitude]="longitude" [markerClickable]="true" (markerClick)="markerClickFunc($event)"></agm-marker>
             </agm-map>
 
-            <div>
-                <mat-label>{{address}}</mat-label>
-                <mat-label>{{latitude}}</mat-label>
-                <mat-label>{{longitude}}</mat-label>
+
+            <mat-divider style="margin-bottom: 20px;margin-top: 20px;"></mat-divider>
+
+            <div fxLayout="row" fxLayoutAlign="space-between center" fxFlex="100%" *ngIf="address">
+                <mat-label><strong>Rua:{{address}}</strong></mat-label>
+                <mat-label><strong>Latitude:{{latitude}}</strong></mat-label>
+                <mat-label><strong>Longitude: {{longitude}}</strong></mat-label>
+                <button mat-raised-button color="primary" (click)="adicionarLocalizacao()">Adicionar</button>
             </div>
+
+            <mat-divider style="margin-bottom: 20px;margin-top: 20px;"></mat-divider>
+            
+            <table mat-table [dataSource]="dataSource" class="mat-elevation-z2">
+                <ng-container matColumnDef="endereco">
+                <th mat-header-cell *matHeaderCellDef> Endereço </th>
+                <td mat-cell *matCellDef="let element"> {{element.endereco}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="latitude">
+                <th mat-header-cell *matHeaderCellDef> Latitude </th>
+                <td mat-cell *matCellDef="let element"> {{element.latitude}} </td>
+                </ng-container>
+
+                <ng-container matColumnDef="longitude">
+                <th mat-header-cell *matHeaderCellDef> Longitude </th>
+                <td mat-cell *matCellDef="let element"> {{element.longitude}} </td>
+                </ng-container>
+            
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+            </table>
         </div>
     </div>
 </div>

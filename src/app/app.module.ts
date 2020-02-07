@@ -45,6 +45,7 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { AgmCoreModule } from '@agm/core';
 import { LocalicazaoComponent } from './empresa/localicazao/localicazao.component';
+import {MatDividerModule} from '@angular/material/divider';
 
 
 export let options: Partial<IConfig> | (() => Partial<IConfig>);
@@ -95,6 +96,7 @@ export let options: Partial<IConfig> | (() => Partial<IConfig>);
     MatExpansionModule,
     MatDatepickerModule,
     MatNativeDateModule ,
+    MatDividerModule,
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyA9TL1CgSdWOj4HsLsRSfzuUDfWnvZuvDA',
       libraries: ['places']

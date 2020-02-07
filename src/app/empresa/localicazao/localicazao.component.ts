@@ -13,6 +13,9 @@ export class LocalicazaoComponent implements OnInit {
 	zoom:number;
 	address: string;
 	private geoCoder;
+	
+	displayedColumns: string[] = ['endereco', 'latitude', 'longitude'];
+	dataSource:any[] = [];
  
 	@ViewChild('search',{static:true})
 	public searchElementRef: ElementRef;
@@ -40,6 +43,7 @@ export class LocalicazaoComponent implements OnInit {
 				//set latitude, longitude and zoom
 				this.latitude = place.geometry.location.lat();
 				this.longitude = place.geometry.location.lng();
+				this.address = place.formatted_address;
 				this.zoom = 12;
 				});
 			});
@@ -52,12 +56,12 @@ export class LocalicazaoComponent implements OnInit {
 			this.latitude = position.coords.latitude;
 			this.longitude = position.coords.longitude;
 			this.zoom = 15;
+			this.getAddress(this.latitude,this.longitude);
 		});
 		}
 	}
 
 	mapaClick($event){
-		console.log($event);
 		this.latitude = $event.coords.lat;
 		this.longitude = $event.coords.lng;
 		this.getAddress(this.latitude, this.longitude);
@@ -65,8 +69,6 @@ export class LocalicazaoComponent implements OnInit {
 
 	getAddress(latitude, longitude) {
 		this.geoCoder.geocode({ 'location': { lat: latitude, lng: longitude } }, (results, status) => {
-		console.log(results);
-		console.log(status);
 		if (status === 'OK') {
 			if (results[0]) {
 				this.address = results[0].formatted_address;
@@ -79,4 +81,36 @@ export class LocalicazaoComponent implements OnInit {
 	
 		});
 	}
+
+	adicionarLocalizacao(){
+		if(this.address && this.latitude && this.longitude){
+			if(!this.validateListExists(this.dataSource,{latitude:this.latitude,longitude:this.longitude})){
+				this.dataSource.push({endereco:this.address,latitude:this.latitude,longitude:this.longitude});
+				this.dataSource = [...this.dataSource]
+			}
+		}
+	}
+
+	getItemBy(arr: any, filter: any) {
+        if (arr == null)
+            return "";
+        let ret = arr.find(item => {
+            let select = true;
+            Object.keys(filter).forEach(fkey => {
+                if (select && item[fkey] != filter[fkey])
+                    select = false;
+            });
+            return select;
+        });
+        return ret ? ret : "";
+	}
+	
+
+    validateListExists(list: any, obj: any) {
+        if (this.getItemBy(list, obj) != "") {
+            return true;
+        } else {
+            return false;
+        }
+    }
 }
