@@ -43,6 +43,14 @@ export class PadraoService {
     refresh
   )
 
+  
+  
+  ListarTodos = (route: string, cacheKey?: string, refresh: boolean = false) => cacheable(
+    () => this.http.get<any[]>(`${environment.apiEndpoint}/api/${route}/listarTodos`,{headers:headers()}),
+    cacheKey,
+    refresh
+  )
+
   ObterTodosPaginado = (route: string,pagination:Paginacao, cacheKey?: string, refresh: boolean = false) => cacheable(
     () => this.http.get<any>(`${environment.apiEndpoint}/api/${route}/ObterTodosPaginado`,{headers:headers(),params:params(pagination)}),
     cacheKey,

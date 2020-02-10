@@ -25,5 +25,8 @@ export class MinhaEmpresaComponent extends BaseComponent {
   IrParaAdicionarFuncionario(){
     this.router.navigate(['./funcionario/minha-empresa']);
   }
+  IrParaAdicionarLocalizacao(){
+    this.router.navigate(['./empresa/localizacao']);
+  }
 
 }

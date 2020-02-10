@@ -1,5 +1,7 @@
 import { Component, OnInit, NgZone, ViewChild, ElementRef } from '@angular/core';
 import { MapsAPILoader, AgmMarker } from '@agm/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { PadraoService } from 'src/app/service/padrao-service';
 
 @Component({
   selector: 'app-localicazao',
@@ -11,10 +13,10 @@ export class LocalicazaoComponent implements OnInit {
 	latitude: number;
 	longitude: number;
 	zoom:number;
-	address: string;
+	address: string = null;
 	private geoCoder;
 	
-	displayedColumns: string[] = ['endereco', 'latitude', 'longitude'];
+	displayedColumns: string[] = ['endereco', 'latitude', 'longitude','Acoes'];
 	dataSource:any[] = [];
  
 	@ViewChild('search',{static:true})
@@ -22,7 +24,9 @@ export class LocalicazaoComponent implements OnInit {
 
 	constructor(
 		private mapsAPILoader: MapsAPILoader,
-		private ngZone: NgZone) { }
+		private ngZone: NgZone,
+		private _snackBar: MatSnackBar,
+		private service:PadraoService) { }
 
 	ngOnInit() {
 		//load Places Autocomplete
@@ -48,16 +52,31 @@ export class LocalicazaoComponent implements OnInit {
 				});
 			});
 		});
+
+		this.service.ListarTodos('localizacao').subscribe(x => {
+			this.dataSource = x;
+		});
+	}
+
+	
+
+	
+	openSnackBar(message: string, botao: string) {
+		this._snackBar.open(message, botao, {
+		  duration: 10000,
+		  horizontalPosition:'right',
+		  verticalPosition:'top'
+		});
 	}
 
 	private setCurrentLocation() {
 		if ('geolocation' in navigator) {
-		navigator.geolocation.getCurrentPosition((position) => {
-			this.latitude = position.coords.latitude;
-			this.longitude = position.coords.longitude;
-			this.zoom = 15;
-			this.getAddress(this.latitude,this.longitude);
-		});
+			navigator.geolocation.getCurrentPosition((position) => {
+				this.latitude = position.coords.latitude;
+				this.longitude = position.coords.longitude;
+				this.zoom = 15;
+				this.getAddress(this.latitude,this.longitude);
+			});
 		}
 	}
 
@@ -85,7 +104,7 @@ export class LocalicazaoComponent implements OnInit {
 	adicionarLocalizacao(){
 		if(this.address && this.latitude && this.longitude){
 			if(!this.validateListExists(this.dataSource,{latitude:this.latitude,longitude:this.longitude})){
-				this.dataSource.push({endereco:this.address,latitude:this.latitude,longitude:this.longitude});
+				this.dataSource.push({id:0,endereco:this.address,latitude:this.latitude,longitude:this.longitude});
 				this.dataSource = [...this.dataSource]
 			}
 		}
@@ -112,5 +131,20 @@ export class LocalicazaoComponent implements OnInit {
         } else {
             return false;
         }
-    }
+	}
+
+	excluirItem(index){
+		this.dataSource.splice(index, 1);
+		this.dataSource = [...this.dataSource];
+	}
+	
+	salvar(){
+		if(this.dataSource.length > 0){
+			this.service.Adicionar('localizacao',this.dataSource).subscribe(data => {
+				this.openSnackBar('Endereços salvos.','fechar');
+			})
+		}else{
+			this.openSnackBar('É necessário adicionar uma localização para salvar.','fechar');
+		}
+	}
 }

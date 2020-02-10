@@ -1,8 +1,8 @@
 
 <mat-toolbar class="mat-elevation-z6" color="primary" style="position: fixed;">
 	<mat-toolbar-row>
-		<span>Ponto Eletrônico</span>
-		<mat-icon style="margin-left: 14px;" (click)="sidenav.toggle()"  *ngIf="isLogged()">menu</mat-icon>
+		<span routerLink=".." style="cursor: pointer;">Ponto Eletrônico</span>
+		<mat-icon style="margin-left: 14px;cursor: pointer;" (click)="sidenav.toggle()"  *ngIf="isLogged()">menu</mat-icon>
 		<span class="example-fill-remaining-space"></span>
 		<button mat-button [matMenuTriggerFor]="menu"  *ngIf="isLogged()">
 			<mat-icon style="margin-right: 14px; font-size: 30px;">person_pin</mat-icon>
