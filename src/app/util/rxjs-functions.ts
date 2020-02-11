@@ -50,10 +50,13 @@ export function headers(){
   }
   return headers;
 }
-export function params(filtro:any = null){
+export function params(filtro:any = null,filtro2:any = null){
   let params: HttpParams = new HttpParams();
   if(filtro != null){
     Object.keys(filtro).map(k => params = params.set(k, filtro[k]));
+  }
+  if(filtro2 != null){
+    Object.keys(filtro2).map(k => params = params.set(k, filtro2[k]));
   }
   return params;
 }

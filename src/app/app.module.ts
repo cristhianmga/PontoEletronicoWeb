@@ -46,6 +46,9 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { AgmCoreModule } from '@agm/core';
 import { LocalicazaoComponent } from './empresa/localicazao/localicazao.component';
 import {MatDividerModule} from '@angular/material/divider';
+import { MeuPerfilComponent } from './meu-perfil/meu-perfil.component';
+import {MatTabsModule} from '@angular/material/tabs';
+import {MatSelectModule} from '@angular/material/select';
 
 
 export let options: Partial<IConfig> | (() => Partial<IConfig>);
@@ -64,7 +67,8 @@ export let options: Partial<IConfig> | (() => Partial<IConfig>);
     DialogConfirmation,
     MinhaEmpresaComponent,
     FuncionarioComponent,
-    LocalicazaoComponent
+    LocalicazaoComponent,
+    MeuPerfilComponent
   ],
   imports: [
     BrowserModule,
@@ -97,6 +101,8 @@ export let options: Partial<IConfig> | (() => Partial<IConfig>);
     MatDatepickerModule,
     MatNativeDateModule ,
     MatDividerModule,
+    MatTabsModule,
+    MatSelectModule,
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyA9TL1CgSdWOj4HsLsRSfzuUDfWnvZuvDA',
       libraries: ['places']

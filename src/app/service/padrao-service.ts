@@ -51,8 +51,8 @@ export class PadraoService {
     refresh
   )
 
-  ObterTodosPaginado = (route: string,pagination:Paginacao, cacheKey?: string, refresh: boolean = false) => cacheable(
-    () => this.http.get<any>(`${environment.apiEndpoint}/api/${route}/ObterTodosPaginado`,{headers:headers(),params:params(pagination)}),
+  ObterTodosPaginado = (route: string,pagination:Paginacao,filtro:any = null, cacheKey?: string, refresh: boolean = false) => cacheable(
+    () => this.http.get<any>(`${environment.apiEndpoint}/api/${route}/ObterTodosPaginado`,{headers:headers(),params:params(pagination,filtro)}),
     cacheKey,
     refresh
   )
@@ -61,5 +61,11 @@ export class PadraoService {
     return this.http.post<any>(`${environment.apiEndpoint}/api/Autenticacao`, obj,{headers:headers()});
   }
 
+  
+  ObterEmpresas = (cacheKey?: string, refresh: boolean = false) => cacheable(
+    () => this.http.get<any[]>(`${environment.apiEndpoint}/api/funcionario/obterEmpresas`,{headers:headers()}),
+    cacheKey,
+    refresh
+  )
 
 }

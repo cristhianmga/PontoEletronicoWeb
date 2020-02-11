@@ -14,16 +14,20 @@ export class PaginationDataTable extends BaseComponent{
     @Input() url:string;
     @Output() dataSourceChange: EventEmitter<any> = new EventEmitter<MatTableDataSource<any>>(false)
     @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
+    @Input() filtro:any = null;
+    @Input() carregarInicio:boolean = true;
 
 
     ngOnInit(){
         this.paginator.pageSize = 5;
-        this.primeiraConexao();
+        if(this.carregarInicio){
+            this.primeiraConexao();
+        }
     }
 
-    primeiraConexao(){
+    primeiraConexao(filtro:any = null){
         this.ObsBlockPanel.setBlockedPanel(true);
-        this.service.ObterTodosPaginado(this.url,new Paginacao(this.paginator.pageIndex,this.paginator.pageSize,"","")).subscribe(x => {
+        this.service.ObterTodosPaginado(this.url,new Paginacao(this.paginator.pageIndex,this.paginator.pageSize,"",""),this.filtro != null ? this.filtro : filtro).subscribe(x => {
             this.dataSource = new MatTableDataSource(x.content);
             this.maxitens = x.totalElements;
             this.dataSourceChange.emit(this.dataSource);
@@ -32,15 +36,15 @@ export class PaginationDataTable extends BaseComponent{
 
     trocaPage(event){
         this.ObsBlockPanel.setBlockedPanel(true);
-        this.service.ObterTodosPaginado(this.url,new Paginacao(event.pageIndex,event.pageSize,"","")).subscribe(x => {
+        this.service.ObterTodosPaginado(this.url,new Paginacao(event.pageIndex,event.pageSize,"",""),this.filtro).subscribe(x => {
             this.dataSource = new MatTableDataSource(x.content);
             this.maxitens = x.totalElements;
             this.dataSourceChange.emit(this.dataSource);
         },error => this.ObsBlockPanel.setBlockedPanel(false),() => this.ObsBlockPanel.setBlockedPanel(false));
     }
 
-    recarregarPage(url){
-        this.service.ObterTodosPaginado(url,new Paginacao(0,5,"","")).subscribe(x => {
+    recarregarPage(url,filtro:any = null){
+        this.service.ObterTodosPaginado(url,new Paginacao(0,5,"",""),this.filtro).subscribe(x => {
             this.dataSource = new MatTableDataSource(x.content);
             this.maxitens = x.totalElements;
             this.dataSourceChange.emit(this.dataSource);

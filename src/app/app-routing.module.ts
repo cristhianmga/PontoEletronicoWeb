@@ -9,6 +9,7 @@ import { VisualizarEmpresaComponent } from './empresa/crud/visualizar-empresa/vi
 import { MinhaEmpresaComponent } from './empresa/minha-empresa/minha-empresa.component';
 import { FuncionarioComponent } from './funcionario/funcionario.component';
 import { LocalicazaoComponent } from './empresa/localicazao/localicazao.component';
+import { MeuPerfilComponent } from './meu-perfil/meu-perfil.component';
 
 
 const routes: Routes = [
@@ -25,7 +26,8 @@ const routes: Routes = [
 
   	]},
   	{ path: 'funcionario', canActivate:[AuthGuard], children:[
-    	{path:'minha-empresa',component:FuncionarioComponent}
+    	{path:'minha-empresa',component:FuncionarioComponent},
+    	{path:'meu-perfil',component:MeuPerfilComponent}
   	]},
 
 ];

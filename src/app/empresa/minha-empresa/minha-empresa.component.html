@@ -11,17 +11,9 @@
     <div  fxLayout="row" fxLayoutAlign="center start" fxFlex="100%">
         <div class="mat-elevation-z1 template-cadastro" fxLayout="Column" fxFlex="100%">
 			<div  fxLayout="row" fxLayoutAlign="space-evenly start" fxFlex="100%">
-				<div fxLayout="Column" fxFlex="45%">
-					<mat-accordion class="headers-align">
-						<mat-expansion-panel>
-							<mat-expansion-panel-header style="background-color:#D3D3D3;">
-								<mat-panel-title ><strong>Informações</strong></mat-panel-title >
-								<mat-panel-description>
-									Dados da empresa 
-									<mat-icon>business</mat-icon>
-								</mat-panel-description>
-							</mat-expansion-panel-header>
-
+				<div fxLayout="Column" fxFlex="100%">
+					<mat-tab-group animationDuration="1000ms" dynamicHeight mat-stretch-tabs>
+						<mat-tab label="Informações">
 							<div fxLayout="column">
 								<div fxLayout="row" fxFlex="100%" *ngIf="empresa" style="padding-top:40px">
 									<mat-label><strong>CNPJ:</strong> {{empresa.CNPJ | cpfCnpj}}</mat-label>
@@ -31,56 +23,46 @@
 									<mat-label><strong>Razão Social:</strong> {{empresa.RazaoSocial}}</mat-label>
 								</div>
 							</div>
-
-						</mat-expansion-panel>
-					</mat-accordion>
-				</div>
-				<div fxLayout="Column" fxFlex="45%">
-					<mat-accordion class="headers-align">
-						<mat-expansion-panel>
-							<mat-expansion-panel-header style="background-color:#D3D3D3;">
-								<mat-panel-title ><strong>Responsáveis</strong></mat-panel-title >
-								<mat-panel-description>
-									Responsáveis com autorização de modificação 
-									<mat-icon>group</mat-icon>
-								</mat-panel-description>
-							</mat-expansion-panel-header>
-						</mat-expansion-panel>
-					</mat-accordion>
-				</div>
-			</div>
-			<h2>Funcionários</h2>
-			<div fxLayout="row" fxLayoutAlign="center start" fxFlex="100%" style="padding-top: 30px;">
-				<div fxLayout="Column" fxFlex="100%">
-					<table mat-table [dataSource]="dataSource">
-						<ng-container matColumnDef="Id">
-							<th mat-header-cell *matHeaderCellDef> Id </th>
-							<td mat-cell *matCellDef="let element"> {{element.funcionario.id}} </td>
-						</ng-container>
-						<ng-container matColumnDef="Nome">
-							<th mat-header-cell *matHeaderCellDef> Nome </th>
-							<td mat-cell *matCellDef="let element"> {{element.funcionario.nome}} </td>
-						</ng-container>
-						<ng-container matColumnDef="CPF">
-							<th mat-header-cell *matHeaderCellDef> CPF </th>
-							<td mat-cell *matCellDef="let element"> {{element.funcionario.cpf | cpfCnpj}} </td>
-						</ng-container>
-						<ng-container matColumnDef="Acoes">
-							<th mat-header-cell *matHeaderCellDef> Ações </th>
-							<td mat-cell  *matCellDef="let element" style="padding-left: 30px;">
-								<button mat-mini-fab style="background-color: green;" (click)="editar(element.id)">
-									<mat-icon>edit</mat-icon>
-								</button>
-								<button mat-mini-fab style="background-color: red;margin-left: 30px;" (click)="openDialog(element.id,urlController)">
-									<mat-icon>delete</mat-icon>
-								</button>
-							</td>
-						</ng-container>
-					<tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-					<tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-					</table>
-					<div *ngIf="dataSource.length === 0">Sem Registros</div>
-					<pagination-data-table [url]="urlController" [(dataSource)]="dataSource"></pagination-data-table>
+						</mat-tab>
+						<mat-tab label="Responsáveis">
+							Content 2
+						</mat-tab>
+						<mat-tab label="Funcionários">
+							<div fxLayout="row" fxLayoutAlign="center start" fxFlex="100%" style="padding-top: 30px;">
+								<div fxLayout="Column" fxFlex="100%">
+									<table mat-table [dataSource]="dataSource">
+										<ng-container matColumnDef="Id">
+											<th mat-header-cell *matHeaderCellDef> Id </th>
+											<td mat-cell *matCellDef="let element"> {{element.funcionario.id}} </td>
+										</ng-container>
+										<ng-container matColumnDef="Nome">
+											<th mat-header-cell *matHeaderCellDef> Nome </th>
+											<td mat-cell *matCellDef="let element"> {{element.funcionario.nome}} </td>
+										</ng-container>
+										<ng-container matColumnDef="CPF">
+											<th mat-header-cell *matHeaderCellDef> CPF </th>
+											<td mat-cell *matCellDef="let element"> {{element.funcionario.cpf | cpfCnpj}} </td>
+										</ng-container>
+										<ng-container matColumnDef="Acoes">
+											<th mat-header-cell *matHeaderCellDef> Ações </th>
+											<td mat-cell  *matCellDef="let element" style="padding-left: 30px;">
+												<button mat-mini-fab style="background-color: green;" (click)="editar(element.id)">
+													<mat-icon>edit</mat-icon>
+												</button>
+												<button mat-mini-fab style="background-color: red;margin-left: 30px;" (click)="openDialog(element.id,urlController)">
+													<mat-icon>delete</mat-icon>
+												</button>
+											</td>
+										</ng-container>
+									<tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+									<tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+									</table>
+									<div *ngIf="dataSource.length === 0">Sem Registros</div>
+									<pagination-data-table [url]="urlController" [(dataSource)]="dataSource"></pagination-data-table>
+								</div>
+							</div>
+						</mat-tab>
+					</mat-tab-group>
 				</div>
 			</div>
 		</div>
