@@ -49,6 +49,12 @@ import {MatDividerModule} from '@angular/material/divider';
 import { MeuPerfilComponent } from './meu-perfil/meu-perfil.component';
 import {MatTabsModule} from '@angular/material/tabs';
 import {MatSelectModule} from '@angular/material/select';
+import { registerLocaleData } from '@angular/common';
+import { MatMomentDateModule } from '@angular/material-moment-adapter';
+import localebr from '@angular/common/locales/pt';
+
+
+registerLocaleData(localebr);
 
 
 export let options: Partial<IConfig> | (() => Partial<IConfig>);
@@ -106,7 +112,8 @@ export let options: Partial<IConfig> | (() => Partial<IConfig>);
     AgmCoreModule.forRoot({
       apiKey: 'AIzaSyA9TL1CgSdWOj4HsLsRSfzuUDfWnvZuvDA',
       libraries: ['places']
-    })
+    }),
+    MatMomentDateModule
   ],
   providers: [AuthGuard,PadraoService,bObservableUsuario,ObservableBlockPanel,SpinnerComponent, MatSpinner,
     PipeCpfCnpj,MatDatepickerModule,  

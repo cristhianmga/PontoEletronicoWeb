@@ -68,4 +68,9 @@ export class PadraoService {
     refresh
   )
 
+  ObterPonto = (filtro:any,cacheKey?: string, refresh: boolean = false) => cacheable(
+    () => this.http.get<any[]>(`${environment.apiEndpoint}/api/registroPonto/ObterRegistroPonto`,{headers:headers(),params:params(filtro)}),
+    cacheKey,
+    refresh
+  )
 }
